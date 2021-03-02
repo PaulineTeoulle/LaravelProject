@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-
 use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/recettes', [HomeController::class, 'index']);
-Route::get('/contact', [HomeController::class, 'index']);
+use App\Http\Controllers\RecetteController;
+Route::get('/recettes', [RecetteController::class, 'index']);
+use App\Http\Controllers\ContactController;
+Route::get('/contact', [ContactController::class, 'index']);
