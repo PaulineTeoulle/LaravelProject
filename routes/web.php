@@ -24,8 +24,6 @@ Route::get('/home', [HomeController::class, 'index']);
 use App\Http\Controllers\RecipesController;
 Route::get('/recettes', [RecipesController::class, 'index']);
 Route::get('/recette/{url}',[RecipesController::class, 'show']);
-Route::get('/recette/create',[RecipesController::class, 'show']);
-
 
 use App\Http\Controllers\ContactController;
 Route::get('/contact', [ContactController::class, 'index']);

@@ -17,7 +17,7 @@
 
     <style>
         body {
-            font-family: 'Nunito';
+            font-family: 'Nunito', serif;
         }
     </style>
 </head>
@@ -30,7 +30,9 @@
     <form method="POST" action="/recipe">
         @csrf
         <div>
-            <input type="text" name="title" placeholder="Titre de la recette">
+            <label>
+                <input type="text" name="title" placeholder="Titre de la recette">
+            </label>
         </div>
         <div>
             <textarea name="content" placeholder="Description de la recette"></textarea>

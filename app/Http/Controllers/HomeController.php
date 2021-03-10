@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+use App\Models\Recipe;
 
 class HomeController extends Controller
 {
@@ -12,7 +13,7 @@ class HomeController extends Controller
         //$recipes = \App\Models\Recipe::all(); //get all recipes
         //$recipes = \App\Models\Recipe::where('author_id', 1)->get()->orderByDate(); //get all recipes
 
-        $recipes = \App\Models\Recipe::orderBy('created_at', 'desc')->take(3)->get();
+        $recipes = Recipe::orderBy('created_at', 'desc')->take(3)->get();
        /* $recipe = \App\Models\Recipe::find(1); //trouver la recette avec l’id 1
         echo $recipe->author->name; //affiche le nom de l’auteur
 
