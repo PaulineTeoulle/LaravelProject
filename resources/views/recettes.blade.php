@@ -24,7 +24,14 @@
     @extends('layouts/main')
 
     @section('content')
-        <h1>Recettes</h1>
+        <br>
+        <br>
+        <ul>
+            @foreach ( $recipes as $recipe )
+                <li><a href="/recette/{{$recipe->title}}">{{ $recipe->title }} </a></li>
+
+            @endforeach
+        </ul>
     @endsection
 
     </body>

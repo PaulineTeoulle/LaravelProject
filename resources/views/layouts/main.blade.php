@@ -42,6 +42,7 @@
             <li><a href="/home">Home</a></li>
             <li><a href="/recettes">Recettes</a></li>
             <li><a href="/contact">Contact</a></li>
+            <li><a href="/create">Créer</a></li>
         </ul>
     </div>
 </div>
@@ -55,7 +56,6 @@
 </div>
 
 @yield('content')
-
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
