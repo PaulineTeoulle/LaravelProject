@@ -21,11 +21,28 @@
         </style>
     </head>
     <body class="antialiased">
-    @extends('layouts/main')
+    @extends('layouts.main')
+
 
     @section('content')
-        <h1>Contact</h1>
-    @endsection
+        <div>
+            <form method="POST" action="/contact/create">
+                @csrf
+                <div>
+                    <input type="text" name="name" placeholder="Nom">
+                </div>
+                <div>
+                    <input type="text" name="email" placeholder="Email"></textarea>
+                </div>
+                <div>
+                    <textarea name="message" placeholder="Message"></textarea>
+                </div>
 
+                <div>
+                    <button type="submit">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    @endsection
     </body>
 </html>
