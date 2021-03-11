@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <h2>Créer un nouveau contact</h2>
+    <h2>Créer une nouvelle recette</h2>
 
     <div>
         <form method="POST" action="/recipe">

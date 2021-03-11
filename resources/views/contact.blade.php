@@ -5,7 +5,7 @@
     @section('content')
 
         <div>
-            Liste des contacts déjà enregistrés : <br> <br>
+            <h2>Liste des contacts déjà enregistrés : </h2>
             @foreach ( $contacts as $contact )
 
                 <li> <b>Nom : </b> {{$contact->name}} <b>Mail : </b>
@@ -16,6 +16,8 @@
 
 
         <div>
+
+           <h2>Créer un contact :</h2>
             <form method="POST" action="/contact/create">
                 @csrf
                 <div>

@@ -16,15 +16,16 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RecipesController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
-
-use App\Http\Controllers\RecipesController;
 Route::get('/recettes', [RecipesController::class, 'index']);
 Route::get('/recette/{url}',[RecipesController::class, 'show']);
 
-use App\Http\Controllers\ContactController;
+Route::resource('/admin/recettes',AdminController ::class);
+
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact/create', [ContactController::class, 'store']);
