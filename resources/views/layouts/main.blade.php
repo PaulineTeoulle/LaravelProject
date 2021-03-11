@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-prototype.min.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
+
+    <style>
+        input, textarea{
+            border : 1px solid #000;
+        }
+    </style>
     <!-- optional CDN for Foundation Icons ^^ -->
 </head>
 <body>
@@ -50,7 +56,7 @@
 
 <div class="callout large primary">
     <div class="text-center">
-        <h1>Our Recipes</h1>
+        <h1>Les Recettes</h1>
         <h2 class="subheader">Such a Simple Recipe Layout</h2>
     </div>
 </div>

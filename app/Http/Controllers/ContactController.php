@@ -9,11 +9,17 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view ('contact');
+        $contacts = Contact::all();
+
+        return view('contact', array(
+            'contacts' => $contacts,
+        ));
     }
 
     public function store(ContactRequest $request)
     {
+
+
 
         $contact = new Contact(); //on instancie un nouveau projet
         $contact->name = request('name'); //on set le titre avec la donnée envoyée du formulaire
@@ -27,16 +33,21 @@ class ContactController extends Controller
            // ->with('message', 'Projet créé');
 
 
-        /*
-       $date = date('Y-m-d H:i:s');
-       Contact::create(request()->validate([
+
+       /*Contact::create(request()->validate([
             'name' => ['required', 'min:3', 'max:255'],
             'email' => 'required',
             'message'=> 'required',
+            'date' => date('Y-m-d H:i:s')
+        ]));
 
-        ]), $date);
 
         return redirect('/contact');*/
+    }
+
+    public function show()
+    {
+
     }
 
 }

@@ -15,6 +15,7 @@ class RecipesController extends Controller
             'recipes' => $recipes,
         ));
     }
+
     public function show($title) {
         $recipe = Recipe::where('title',$title)->first(); //get first recipe with recipe_nam == $recipe_name
 
