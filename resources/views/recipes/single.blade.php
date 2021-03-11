@@ -24,7 +24,12 @@
 @extends('layouts/main')
 
 @section('content')
-    {{$recipe->author->name}}
+
+    Titre : {{$recipe->title}} <br><br>
+    Auteur : {{$recipe->author->name}}<br><br>
+    Content : {{$recipe->content}}<br><br>
+    Ingrédients : {{$recipe->ingredients}}<br><br>
+
 @endsection
 
 </body>
