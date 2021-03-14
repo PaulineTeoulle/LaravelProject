@@ -43,7 +43,7 @@ class RecipesController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('recipes/create');
     }
 
 
@@ -55,7 +55,18 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd("ok");
+        $recipe = new Recipe(); 
+        $recipe->author_id = 1;
+        $recipe->title = request('title');
+        $recipe->content = request('content');
+        $recipe->ingredients = request('ingredients');
+        $recipe->url = 'url static'; //STATIQUE
+        $recipe->date = date('Y-m-d H:i:s');
+        $recipe->status = 'status static'; //STATIQUE
+        $recipe->save();
+
+        return redirect('/recettes'); 
     }
     /**
      * Show the form for editing the specified resource.

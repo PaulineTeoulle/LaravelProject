@@ -23,6 +23,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/recettes', [RecipesController::class, 'index']);
+Route::get('/recettes/create', [RecipesController::class, 'create']);
+Route::post('/recettes/create', [RecipesController::class, 'store']);
+
 Route::get('/recette/{url}',[RecipesController::class, 'show']);
 
 Route::resource('/admin/recettes',AdminController ::class);

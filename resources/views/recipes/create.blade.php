@@ -2,29 +2,28 @@
 
 
 @section('content')
-    <h2>Créer une nouvelle recette</h2>
-
-    <div>
-        <form method="POST" action="/recipe">
+    <div class="row">
+        <div class="medium-6 columns">
+        <h2>Créer une nouvelle recette</h2>
+        <form method="POST" action="{{ url('recettes/create') }}">
             @csrf
-            <div>
-                <label>
-                    <input type="text" name="title" placeholder="Titre de la recette">
-                </label>
+            <div class="row">
+                <div class="medium-6 columns">
+                    <input class="form-control" type="text" name="title" placeholder="Titre de la recette">
+                </div>
             </div>
-            <div>
-                <label>
+            <div class="row">
+                <div class="medium-6 columns">
                     <textarea name="content" placeholder="Description de la recette"></textarea>
-                </label>
+                </div>
             </div>
-            <div>
-                <label>
-                    <textarea name="content" placeholder="Ingrédients de la recette"></textarea>
-                </label>
+            <div class="row">
+                <div class="medium-6 columns">
+                    <textarea name="ingredients" placeholder="Ingrédients de la recette"></textarea>
+                </div>
             </div>
 
-            <div>
-                <button type="submit">Créer la recette</button>
+            <button type="submit" class="button">Créer</button>
             </div>
         </form>
     </div>
