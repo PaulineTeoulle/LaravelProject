@@ -48,7 +48,7 @@
             <li><a href="/home">Home</a></li>
             <li><a href="/recettes">Recettes</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="/recettes/create">Créer</a></li>
+            <li><a href="admin/recettes/create">Créer</a></li>
         </ul>
     </div>
 </div>

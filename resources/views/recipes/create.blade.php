@@ -5,7 +5,7 @@
     <div class="row">
         <div class="medium-6 columns">
         <h2>Créer une nouvelle recette</h2>
-        <form method="POST" action="{{ url('recettes/create') }}">
+        <form method="POST" action="{{ url('admin/recettes') }}">
             @csrf
             <div class="row">
                 <div class="medium-6 columns">

@@ -28,8 +28,8 @@ class RecipesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($title) {
-        $recipe = Recipe::where('title',$title)->first(); //get first recipe with recipe_nam == $recipe_name
+    public function show($id) {
+        $recipe = Recipe::where('id',$id)->first(); //get first recipe with recipe_nam == $recipe_name
 
         return view('recipes/single', array( //Pass the recipe to the view
             'recipe' => $recipe
@@ -55,7 +55,6 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        // dd("ok");
         $recipe = new Recipe(); 
         $recipe->author_id = 1;
         $recipe->title = request('title');
@@ -76,7 +75,11 @@ class RecipesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $recipe = Recipe::where('id',$id)->first(); //get first recipe with recipe_nam == $recipe_name
+
+        return view('recipes/edit', array( //Pass the recipe to the view
+            'recipe' => $recipe
+        ));
     }
 
     /**
@@ -88,7 +91,7 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd("ok");
     }
 
     /**
