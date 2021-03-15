@@ -67,6 +67,7 @@ class RecipesController extends Controller
 
         return redirect('/recettes');
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -91,8 +92,14 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd("ok");
-        //echo $id;
+        $recipe = Recipe::findOrFail($id);
+        $input = $request->all();
+        $recipe->fill($input)->save();
+
+        return view('recipes/single', array(
+            'recipe' => $recipe
+        ));
+
     }
 
     /**
@@ -103,7 +110,7 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-        Recipe::find($id)->delete();
+        Recipe::findOrFail($id)->delete();
         $recipes = Recipe::all();
         return view('recettes',array(
             'recipes' => $recipes,

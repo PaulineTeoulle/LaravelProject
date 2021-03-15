@@ -15,6 +15,10 @@ class Recipe extends Model
     use HasFactory;
 
 
+    protected $fillable = [
+        'title', 'content','ingredients'
+    ];
+
     /**
      * Get the user that authored the recipe.
      */

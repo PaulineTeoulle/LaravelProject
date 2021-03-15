@@ -18,13 +18,10 @@ use Illuminate\Support\Facades\Route;
 });*/
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecipesController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/recettes', [RecipesController::class, 'index']);
-// Route::get('/recettes/create', [RecipesController::class, 'create']);
-// Route::post('/recettes/create', [RecipesController::class, 'store']);
 
 Route::get('/recettes/{url}',[RecipesController::class, 'show']);
 

@@ -1,4 +1,3 @@
-
 @extends('layouts/main')
 
 @section('content')
@@ -8,12 +7,15 @@
     Content : {{$recipe->content}}<br><br>
     Ingrédients : {{$recipe->ingredients}}<br><br>
 
-    <button><a href="/admin/recettes/{{$recipe->id}}/edit">Edit</a></button>
+    <form method="GET" action="/admin/recettes/{{$recipe->id}}/edit">
+        @method('GET')
+        @csrf
+        <button type="submit" class="button">Editer</button>
+    </form>
 
-
-        <form method="POST" action="/admin/recettes/{{$recipe->id}}">
-            @method('DELETE')
-            @csrf
-            <button type="submit" class="button">Delete</button>
-        </form>
+    <form method="POST" action="/admin/recettes/{{$recipe->id}}">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="button">Supprimer</button>
+    </form>
 @endsection

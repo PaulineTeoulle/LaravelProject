@@ -8,7 +8,7 @@
         <br>
         <ul>
             @foreach ( $recipes as $recipe )
-                <li><a href="/recette/{{$recipe->title}}">{{ $recipe->title }} </a></li>
+                <li><a href="/recette/{{$recipe->id}}">{{ $recipe->title }} </a></li>
 
             @endforeach
         </ul>
