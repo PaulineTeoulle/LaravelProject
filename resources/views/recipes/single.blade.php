@@ -10,4 +10,10 @@
 
     <button><a href="/admin/recettes/{{$recipe->id}}/edit">Edit</a></button>
 
+
+        <form method="POST" action="/admin/recettes/{{$recipe->id}}">
+            @method('DELETE')
+            @csrf
+            <button type="submit" class="button">Delete</button>
+        </form>
 @endsection

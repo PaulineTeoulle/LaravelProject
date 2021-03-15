@@ -3,12 +3,10 @@
 
 @section('content')
     <div class="row">
-        <div class="medium-6 columns">
         <h2>Mode edition</h2>
-        <form method="PUT" action="{{ url('admin/recettes/1/update') }}">
-            @csrf
+        <form method="POST" action="/admin/recettes/{{$recipe->id}}">
             @method('PUT')
-
+            @csrf
             <div class="row">
                 <div class="medium-6 columns">
                     <input class="form-control" type="text" name="title" value="{{$recipe->title}}">
@@ -26,7 +24,6 @@
             </div>
 
             <button type="submit" class="button">Editer</button>
-            </div>
         </form>
     </div>
 @endsection

@@ -55,7 +55,7 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        $recipe = new Recipe(); 
+        $recipe = new Recipe();
         $recipe->author_id = 1;
         $recipe->title = request('title');
         $recipe->content = request('content');
@@ -65,7 +65,7 @@ class RecipesController extends Controller
         $recipe->status = 'status static'; //STATIQUE
         $recipe->save();
 
-        return redirect('/recettes'); 
+        return redirect('/recettes');
     }
     /**
      * Show the form for editing the specified resource.
@@ -92,6 +92,7 @@ class RecipesController extends Controller
     public function update(Request $request, $id)
     {
         dd("ok");
+        //echo $id;
     }
 
     /**
@@ -102,7 +103,11 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Recipe::find($id)->delete();
+        $recipes = Recipe::all();
+        return view('recettes',array(
+            'recipes' => $recipes,
+        ));
     }
 
 
