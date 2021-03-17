@@ -28,8 +28,13 @@
                 </div>
             </div>
 
-            <button type="submit" class="button">Créer</button>
+            <div class="row">
+                <div class="medium-6 columns">
+                    <input class="form-control" type="file" name="media" placeholder="Image de la recette">
+                </div>
             </div>
+
+            <button type="submit" class="button">Créer</button>
         </form>
     </div>
 @endsection

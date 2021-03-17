@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <h2>Mode edition</h2>
-        <form method="POST" action="/admin/recettes/{{$recipe->id}}">
+        <form method="POST" action="/admin/recette/{{$recipe->id}}">
             @method('PUT')
             @csrf
             <div class="row">

@@ -25,6 +25,7 @@ class CreateRecipesTable extends Migration
             $table->string('status');
             $table->string('media')->nullable();
             $table->timestamps();
+            $table->string('media')->nullable();
         });
     }
 
