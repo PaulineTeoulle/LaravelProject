@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,15 +20,25 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecipesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/recettes', [RecipesController::class, 'index']);
 
-Route::get('/recettes/{url}',[RecipesController::class, 'show']);
+Route::get('/recette/{url}',[RecipesController::class, 'show']);
 
 Route::resources([
-    '/admin/recettes' => RecipesController::class,
+    '/admin/recette' => RecipesController::class,
 ]);
 
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact/create', [ContactController::class, 'store']);
+
+
+Route::post('/comment/create', [CommentController::class, 'store']);
+
+
+
+
+

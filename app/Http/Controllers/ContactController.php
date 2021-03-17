@@ -32,7 +32,9 @@ class ContactController extends Controller
         return redirect('/contact'); // méthode pour rediriger vers une autre url (en get par défaut)
            // ->with('message', 'Projet créé');
 
-
+/*$maVar = request->val();
+$maVar['date'] =
+    create($maV)*/
 
        /*Contact::create(request()->validate([
             'name' => ['required', 'min:3', 'max:255'],

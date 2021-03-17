@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -29,11 +30,14 @@ class RecipesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $recipe = Recipe::where('id',$id)->first(); //get first recipe with recipe_nam == $recipe_name
+        $recipe = Recipe::where('id',$id)->first();
 
-        return view('recipes/single', array( //Pass the recipe to the view
-            'recipe' => $recipe
-        ));
+        $comments = Comment::all()->where('recipe_id',$id);
+         return view('recipes/single', array(
+                'recipe' => $recipe,
+                'comments' =>$comments,
+         ));
+
     }
 
     /**
@@ -63,6 +67,7 @@ class RecipesController extends Controller
         $recipe->url = 'url static'; //STATIQUE
         $recipe->date = date('Y-m-d H:i:s');
         $recipe->status = 'status static'; //STATIQUE
+        $recipe->media = request('media');
         $recipe->save();
 
         return redirect('/recettes');
