@@ -33,7 +33,6 @@
     <div>
         <h2>Liste des commentaires : </h2>
         @foreach ( $comments as $comment )
-
             <li>
                 <b>Date : </b>
                 {{ $comment->date}}
