@@ -23,6 +23,7 @@ class CreateRecipesTable extends Migration
             $table->string('tags')->nullable();
             $table->dateTime('date');
             $table->string('status');
+            $table->string('media')->nullable();
             $table->timestamps();
             $table->string('media')->nullable();
         });
