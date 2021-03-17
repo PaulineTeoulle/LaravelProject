@@ -55,6 +55,20 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
+        //Gestion des images
+
+        //TODO : verif si image existe deja => changer nom
+        
+        $urlString = $_SERVER['DOCUMENT_ROOT'];
+        $info = pathinfo($urlString);
+        $target_dir = $info['dirname'] . '\public\images\\';
+
+        $file = request('media');
+        $filename = $file->getClientOriginalName();
+
+        $target_file = $target_dir . $filename;
+        move_uploaded_file($file, $target_file);
+
         $recipe = new Recipe();
         $recipe->author_id = 1;
         $recipe->title = request('title');
@@ -63,6 +77,7 @@ class RecipesController extends Controller
         $recipe->url = 'url static'; //STATIQUE
         $recipe->date = date('Y-m-d H:i:s');
         $recipe->status = 'status static'; //STATIQUE
+        $recipe->media = $filename; //STATIQUE
         $recipe->save();
 
         return redirect('/recettes');

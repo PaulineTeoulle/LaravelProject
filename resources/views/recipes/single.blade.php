@@ -6,6 +6,9 @@
     Auteur : {{$recipe->author->name}}<br><br>
     Content : {{$recipe->content}}<br><br>
     Ingrédients : {{$recipe->ingredients}}<br><br>
+    @if ($recipe->media)
+    <img src="{{ asset('/images/'.$recipe->media) }}">
+    @endif
 
     <form method="GET" action="/admin/recettes/{{$recipe->id}}/edit">
         @method('GET')

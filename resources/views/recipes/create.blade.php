@@ -5,7 +5,7 @@
     <div class="row">
         <div class="medium-6 columns">
         <h2>Créer une nouvelle recette</h2>
-        <form method="POST" action="{{ url('admin/recettes') }}">
+        <form method="POST" action="{{ url('admin/recettes') }}" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="medium-6 columns">
@@ -20,6 +20,11 @@
             <div class="row">
                 <div class="medium-6 columns">
                     <textarea name="ingredients" placeholder="Ingrédients de la recette"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-6 columns">
+                <input type="file" name="media">
                 </div>
             </div>
 
