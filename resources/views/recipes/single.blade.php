@@ -10,8 +10,6 @@
     <img src="{{ asset('/images/'.$recipe->media) }}">
     @endif
 
-    <img src="{{$recipe->media}}">
-
     <form method="GET" action="/admin/recette/{{$recipe->id}}/edit">
         @method('GET')
         @csrf
