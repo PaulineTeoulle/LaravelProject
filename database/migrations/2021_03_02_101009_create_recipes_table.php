@@ -16,16 +16,16 @@ class CreateRecipesTable extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->integer('author_id');
+            $table->foreign('author_id')->references('id')->on('users');
             $table->string('title');
             $table->string('content');
             $table->string('ingredients');
             $table->string('url');
             $table->string('tags')->nullable();
-            $table->dateTime('date');
+            $table->dateTime('date')->useCurrent();
             $table->string('status');
             $table->string('media')->nullable();
             $table->timestamps();
-            $table->string('media')->nullable();
         });
     }
 

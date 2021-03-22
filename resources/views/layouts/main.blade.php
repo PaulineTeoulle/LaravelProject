@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-prototype.min.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
     {{-- <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'> --}}
 </head>
 <body>
@@ -14,13 +15,36 @@
 <!-- Start Top Bar -->
 <div class="top-bar">
     <div class="top-bar-left">
-        <ul class="menu">
-            <li class="menu-text"></li>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/recettes">Recettes</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/admin/recette/create">Créer</a></li>
-        </ul>
+
+        @if(Auth::check())
+            <ul class="menu">
+                <li class="menu-text"></li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/recettes">Recettes</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/admin/recette/create">Créer une recette</a></li>
+                <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                {{ __('Logout') }}
+                            </x-dropdown-link>
+                        </form>
+                </li>
+            </ul>
+
+        @else
+            <ul class="menu">
+                <li class="menu-text"></li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/recettes">Recettes</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+
+        @endif
+
     </div>
 </div>
 <!-- End Top Bar -->

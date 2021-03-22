@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\Recipe;
 use Illuminate\Database\Seeder;
 
 class CommentSeeder extends Seeder
@@ -13,9 +16,9 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Comment::factory(5)->create();
+        Comment::factory()->count(10)->create();
 
-        //\App\Models\User::factory(10)->create();
-        //\App\Models\User::factory(5)->has(\App\Models\Recipe::factory()->count(10))->create();
+        //User::factory(10)->create();
+        //\User::factory(5)->has(Recipe::factory()->count(10))->create();
     }
 }

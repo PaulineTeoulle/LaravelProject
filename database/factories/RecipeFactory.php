@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Recipe;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -22,8 +23,10 @@ class RecipeFactory extends Factory
      */
     public function definition()
     {
+        $author_id = User::all()->random()->id;
+
         return [
-            'author_id'=>$this->faker->randomDigitNotNull,
+            'author_id'=> $author_id,
             'title' => $this->faker->text,
             'content' => $this->faker->text,
             'ingredients' => $this->faker->text,

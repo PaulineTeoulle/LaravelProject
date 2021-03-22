@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RecipesController extends Controller
 {
@@ -50,7 +51,6 @@ class RecipesController extends Controller
         return view('recipes/create');
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -60,26 +60,27 @@ class RecipesController extends Controller
     public function store(Request $request)
     {
         //Gestion des images
-
         //TODO : verif si image existe deja => changer nom
-        
+
         $urlString = $_SERVER['DOCUMENT_ROOT'];
         $info = pathinfo($urlString);
         $target_dir = $info['dirname'] . '\public\images\\';
 
         $file = request('media');
-        $filename = $file->getClientOriginalName();
+        if($file!=null)
+            $filename = $file->getClientOriginalName();
+        else
+            $filename = null;
 
         $target_file = $target_dir . $filename;
         move_uploaded_file($file, $target_file);
 
         $recipe = new Recipe();
-        $recipe->author_id = 1;
+        $recipe->author_id = Auth::id();
         $recipe->title = request('title');
         $recipe->content = request('content');
         $recipe->ingredients = request('ingredients');
         $recipe->url = 'url static'; //STATIQUE
-        $recipe->date = date('Y-m-d H:i:s');
         $recipe->status = 'status static'; //STATIQUE
         $recipe->media = $filename; //STATIQUE
         $recipe->save();

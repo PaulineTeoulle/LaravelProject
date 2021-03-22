@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,18 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
+
+
+
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecipesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/recettes', [RecipesController::class, 'index']);
 
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/dashboard',[HomeController::class, 'index'] );
+Route::get('/recettes', [RecipesController::class, 'index']);
 Route::get('/recette/{url}',[RecipesController::class, 'show']);
 
 Route::resources([
@@ -37,8 +40,9 @@ Route::post('/contact/create', [ContactController::class, 'store']);
 
 
 Route::post('/comment/create', [CommentController::class, 'store']);
+Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
 
 
 
 
-
+require __DIR__.'/auth.php';

@@ -2,35 +2,53 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="medium-6 columns">
-        <h2>Créer une nouvelle recette</h2>
-        <form method="POST" action="{{ url('admin/recette') }}" enctype="multipart/form-data">
-            @csrf
-            <div class="row">
-                <div class="medium-6 columns">
-                    <input class="form-control" type="text" name="title" placeholder="Titre de la recette">
+    <article class="grid-container">
+        <div class="grid-x align-center">
+            <div class="cell medium-8">
+                <div class="blog-post">
+                    <h3>Créer une nouvelle recette </h3>
+                    <div class="callout">
+                        <form method="POST" action="{{ url('admin/recette') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="medium-6 columns">
+                                    @error('title')
+                                    <p style="color:red">{{$errors->first('title')}}</p>
+                                    @enderror
+                                    <input class="form-control" type="text" name="title" placeholder="Titre de la recette"  value="{{old('title')}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="medium-6 columns">
+                                    @error('content')
+                                    <p style="color:red">{{$errors->first('content')}}</p>
+                                    @enderror
+                                    <textarea name="content" placeholder="Description de la recette">{{old('content')}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="medium-6 columns">
+                                    @error('ingredients')
+                                    <p style="color:red">{{$errors->first('ingredients')}}</p>
+                                    @enderror
+                                    <textarea name="ingredients" placeholder="Ingrédients de la recette">{{old('ingredients')}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="medium-6 columns">
+                                    @error('media')
+                                    <p style="color:red">{{$errors->first('media')}}</p>
+                                    @enderror
+                                    <input type="file" name="media">
+                                </div>
+                            </div>
+                            <button type="submit" class="button">Créer</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="medium-6 columns">
-                    <textarea name="content" placeholder="Description de la recette"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="medium-6 columns">
-                    <textarea name="ingredients" placeholder="Ingrédients de la recette"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="medium-6 columns">
-                <input type="file" name="media">
-                </div>
-            </div>
-
-            <button type="submit" class="button">Créer</button>
-        </form>
-    </div>
+        </div>
+    </article>
 @endsection
 
 
