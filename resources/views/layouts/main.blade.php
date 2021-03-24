@@ -14,7 +14,6 @@
 <body>
 
 <div id="app">
-<example-component></example-component>
 <!-- Start Top Bar -->
 <div class="top-bar">
     <div class="top-bar-left">
@@ -22,7 +21,7 @@
         @if(Auth::check())
             <ul class="menu">
                 <li class="menu-text"></li>
-                <li><a href="/home">Home</a></li>
+                <li><router-link to="/home">Home</router-link></li>
                 <li><a href="/recettes">Recettes</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/admin/recette/create">Créer une recette</a></li>
@@ -49,6 +48,10 @@
         @endif
 
     </div>
+</div>
+
+<div class="container">
+    <router-view></router-view>
 </div>
 <!-- End Top Bar -->
 <div class="callout large primary">

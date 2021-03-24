@@ -25,8 +25,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', function(){
+    return view('welcome');
+});
+
+Route::get('/test',[HomeController::class, 'index'] );
+
+// Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('/', 'HomeController@index');
 Route::get('/dashboard',[HomeController::class, 'index'] );
 Route::get('/recettes', [RecipesController::class, 'index']);
 Route::get('/recette/{url}',[RecipesController::class, 'show']);

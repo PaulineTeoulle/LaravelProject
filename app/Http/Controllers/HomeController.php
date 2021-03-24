@@ -16,9 +16,11 @@ class HomeController extends Controller
     {
         $recipes = Recipe::orderBy('created_at', 'desc')->take(3)->get();
 
-        return view('welcome',array(
-            'recipes' => $recipes,
-        ));
+        // return view('welcome',array(
+        //     'recipes' => $recipes,
+        // ));
+
+        return response()->json($recipes);
 
     }
 }
