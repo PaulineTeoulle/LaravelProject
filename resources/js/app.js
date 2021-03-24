@@ -7,16 +7,22 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter) 
 
 import Home from './components/Home.vue';
+import Recipes from './components/Recipes.vue';
+
 
 const routes = [
     {
         path: '/',
         component: Home
+    },
+    {
+        path: '/recipes',
+        component: Recipes
     }
 ]
 
 const router = new VueRouter({routes});
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('navbar', require('./components/Nav.vue').default);
 
 const app = new Vue({
     el: '#app',

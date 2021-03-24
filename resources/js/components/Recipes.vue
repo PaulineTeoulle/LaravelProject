@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        HOME
-         <div>
+        RECETTES
+        <div>
             <ul>
-                <li v-for="recipe in recipes" :key="recipe.id">
+                <li v-for="recipe in recipes" :key=""recipe.id>
                     {{recipe.title}}
                 </li>
             </ul>
@@ -21,10 +21,9 @@
         },
 
         created(){
-            axios.get('/home/recipes')
+            axios.get('/recipes')
                 .then(response => this.recipes = response.data)
                 .catch(error => console.log(error));
-
         },
 
         mounted() {

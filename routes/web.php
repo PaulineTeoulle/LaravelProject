@@ -26,10 +26,11 @@ use App\Http\Controllers\CommentController;
 
 
 Route::get('/', function(){
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/test',[HomeController::class, 'index'] );
+Route::get('/home/recipes',[HomeController::class, 'index'] );
+Route::get('/recipes',[RecipesController::class, 'index'] );
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 // Route::get('/', 'HomeController@index');

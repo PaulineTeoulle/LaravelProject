@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -15,14 +16,15 @@
 
 <div id="app">
 <!-- Start Top Bar -->
-<div class="top-bar">
+    <!-- <Navbar/> -->
+    <div class="top-bar">
     <div class="top-bar-left">
 
         @if(Auth::check())
             <ul class="menu">
                 <li class="menu-text"></li>
-                <li><router-link to="/home">Home</router-link></li>
-                <li><a href="/recettes">Recettes</a></li>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/recipes">Recettes</router-link></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/admin/recette/create">Créer une recette</a></li>
                 <li>
@@ -59,13 +61,15 @@
     </div>
 </div>
 
-<article class="grid-container">
+<!-- <article class="grid-container">
 
     @yield('content')
 
-</article>
+</article> -->
 
+    <router-view></router-view>
 </div>
+
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>

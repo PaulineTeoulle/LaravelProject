@@ -19,9 +19,11 @@ class RecipesController extends Controller
     {
         $recipes = Recipe::all(); //get all recipes
 
-        return view('recettes',array(
-            'recipes' => $recipes,
-        ));
+        // return view('recettes',array(
+        //     'recipes' => $recipes,
+        // ));
+
+        return response()->json($recipes);
     }
 
     /**
