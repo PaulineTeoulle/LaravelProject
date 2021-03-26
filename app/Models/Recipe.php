@@ -28,4 +28,5 @@ class Recipe extends Model
     }
 
 
+
 }

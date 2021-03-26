@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,24 +26,24 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
 
 
+/*Route::middleware('admin')->group(function () {
+    Route::get('/contact', [ContactController::class, 'index']);
+});*/
+
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('/dashboard',[HomeController::class, 'index'] );
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/dashboard',[HomeController::class, 'index']);
 Route::get('/recettes', [RecipesController::class, 'index']);
 Route::get('/recette/{url}',[RecipesController::class, 'show']);
+
+Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact/create', [ContactController::class, 'store']);
 
 Route::resources([
     '/admin/recette' => RecipesController::class,
 ]);
 
-Route::get('/contact', [ContactController::class, 'index']);
-Route::post('/contact/create', [ContactController::class, 'store']);
-
-
 Route::post('/comment/create', [CommentController::class, 'store']);
 Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
-
-
-
 
 require __DIR__.'/auth.php';

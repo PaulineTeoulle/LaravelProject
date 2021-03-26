@@ -22,7 +22,6 @@
                 <li><a href="/home">Home</a></li>
                 <li><a href="/recettes">Recettes</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/admin/recette/create">Créer une recette</a></li>
                 <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -42,7 +41,6 @@
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Register</a></li>
             </ul>
-
         @endif
 
     </div>

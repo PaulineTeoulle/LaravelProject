@@ -38,10 +38,4 @@ class ContactController extends Controller
         $maVar['date'] = date
         create($maV)*/
     }
-
-    public function show()
-    {
-
-    }
-
 }

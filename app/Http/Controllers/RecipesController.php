@@ -38,7 +38,6 @@ class RecipesController extends Controller
                 'recipe' => $recipe,
                 'comments' =>$comments,
          ));
-
     }
 
     /**
@@ -112,14 +111,17 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+
         $recipe = Recipe::findOrFail($id);
         $input = $request->all();
         $recipe->fill($input)->save();
 
+
         return view('recipes/single', array(
             'recipe' => $recipe
         ));
-
     }
 
     /**
