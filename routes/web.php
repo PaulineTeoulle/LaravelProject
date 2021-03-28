@@ -31,12 +31,13 @@ Route::get('/', function(){
 
 Route::get('/home/recipes',[HomeController::class, 'index'] );
 Route::get('/recipes',[RecipesController::class, 'index'] );
+Route::get('/recipe/{url}',[RecipesController::class, 'show']);
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 // Route::get('/', 'HomeController@index');
 Route::get('/dashboard',[HomeController::class, 'index'] );
-Route::get('/recettes', [RecipesController::class, 'index']);
-Route::get('/recette/{url}',[RecipesController::class, 'show']);
+// Route::get('/recettes', [RecipesController::class, 'index']);
+// Route::get('/recette/{url}',[RecipesController::class, 'show']);
 
 Route::resources([
     '/admin/recette' => RecipesController::class,

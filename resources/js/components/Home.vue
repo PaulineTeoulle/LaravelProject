@@ -4,7 +4,7 @@
          <div>
             <ul>
                 <li v-for="recipe in recipes" :key="recipe.id">
-                    {{recipe.title}}
+                    <router-link :to="`/recipe/${recipe.id}`">{{recipe.title}}</router-link>
                 </li>
             </ul>
         </div>

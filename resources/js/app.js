@@ -8,6 +8,8 @@ Vue.use(VueRouter)
 
 import Home from './components/Home.vue';
 import Recipes from './components/Recipes.vue';
+import Recipe from './components/Recipe.vue';
+
 
 
 const routes = [
@@ -18,6 +20,10 @@ const routes = [
     {
         path: '/recipes',
         component: Recipes
+    },
+    {
+        path: '/recipe/:id',
+        component: Recipe
     }
 ]
 

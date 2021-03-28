@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -34,12 +35,17 @@ class RecipesController extends Controller
      */
     public function show($id) {
         $recipe = Recipe::where('id',$id)->first();
-
         $comments = Comment::all()->where('recipe_id',$id);
-         return view('recipes/single', array(
-                'recipe' => $recipe,
-                'comments' =>$comments,
-         ));
+        $author = User::where('id', $recipe->author_id)->first();
+
+        $recipe->author = $author;
+        $response = ["recipe" => $recipe, "comments" => $comments];
+        return response()->json($response);
+
+        //  return view('recipes/single', array(
+        //         'recipe' => $recipe,
+        //         'comments' =>$comments,
+        //  ));
 
     }
 

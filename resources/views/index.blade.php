@@ -40,8 +40,8 @@
         @else
             <ul class="menu">
                 <li class="menu-text"></li>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/recettes">Recettes</a></li>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/recipes">Recettes</router-link></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Register</a></li>
