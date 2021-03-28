@@ -18,11 +18,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        Contact::create(request()->validate([
-            'name' => ['required', 'min:3', 'max:255'],
-            'email' => 'required', 'email',
-            'message'=> 'required',
-        ]));
+        Contact::create($request->validate($request->rules()));
 
         return redirect('/contact');
         /*

@@ -24,7 +24,20 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'min:3', 'max:255'],
+            'email' => 'required', 'email',
+            'message'=> 'required',
+            'g-recaptcha-response' => 'required|recaptcha'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'The :attribute field is required.',
+            'email' => 'The :attribute must use a valid email address',
+            'g-recaptcha-response.recaptcha' => 'Captcha verification failed',
+            'g-recaptcha-response.required' => 'Please complete the captcha'
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CaptchaServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,5 +46,6 @@ Route::resources([
 
 Route::post('/comment/create', [CommentController::class, 'store']);
 Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
+
 
 require __DIR__.'/auth.php';
