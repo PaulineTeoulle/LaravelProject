@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CaptchaServiceController;
+use App\Http\Controllers\GestionRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,10 @@ Route::resources([
 
 Route::post('/comment/create', [CommentController::class, 'store']);
 Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
+
+
+Route::get('/gestion', [GestionRoleController::class, 'index']);
+Route::post('/gestion/update/{id}', [GestionRoleController::class, 'update']);
 
 
 require __DIR__.'/auth.php';
