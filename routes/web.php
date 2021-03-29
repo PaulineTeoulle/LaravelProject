@@ -31,7 +31,11 @@ Route::get('/', function(){
 
 Route::get('/home/recipes',[HomeController::class, 'index'] );
 Route::get('/recipes',[RecipesController::class, 'index'] );
-Route::get('/recipe/{url}',[RecipesController::class, 'show']);
+Route::get('/recipe/{id}',[RecipesController::class, 'show']);
+
+Route::resources([
+    '/admin/recipe' => RecipesController::class,
+]);
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 // Route::get('/', 'HomeController@index');

@@ -8,6 +8,11 @@
         <div v-if="this.recipe.media">
             <img :src="`/images/${this.recipe.media}`">
         </div>
+
+        <button v-on:click="deleteRecipe" class="button">Supprimer</button>
+        <button v-on:click="editRecipe" class="button">                    
+            <router-link :to="`/admin/recipe/${recipe.id}/edit`">Modifier</router-link>
+        </button>
     </div>
 </template>
 
@@ -23,10 +28,6 @@
 
         created(){
             axios.get('/recipe/' + this.$route.params.id)
-                // .then(response => {
-                //     console.log(response.data.recipe)
-                //     console.log("ok")
-                // })
                 .then(response => {
                     this.recipe = response.data.recipe;
                     this.comments = response.data.comments;
@@ -35,9 +36,17 @@
         },
 
         methods: {
-            // getImage:function(){
-            //     return require("/images/casimir.jpg")
-            // }
+            deleteRecipe:function(){
+                axios.delete('/admin/recipe/' + this.$route.params.id)
+                .then(response => this.$router.push('/') )
+                .catch(error => console.log(error));
+            },
+
+            editRecipe:function(){
+                axios.get('/admin/recipe/' + this.$route.params.id + '/edit')
+                .then(response => console.log(response))
+                .catch(error => console.log(error));
+            }
         },
 
 

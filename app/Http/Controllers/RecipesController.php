@@ -105,10 +105,11 @@ class RecipesController extends Controller
     public function edit($id)
     {
         $recipe = Recipe::where('id',$id)->first(); //get first recipe with recipe_nam == $recipe_name
+        return response()->json($recipe);
 
-        return view('recipes/edit', array( //Pass the recipe to the view
-            'recipe' => $recipe
-        ));
+        // return view('recipes/edit', array( //Pass the recipe to the view
+        //     'recipe' => $recipe
+        // ));
     }
 
     /**
@@ -124,9 +125,9 @@ class RecipesController extends Controller
         $input = $request->all();
         $recipe->fill($input)->save();
 
-        return view('recipes/single', array(
-            'recipe' => $recipe
-        ));
+        // return view('recipes/single', array(
+        //     'recipe' => $recipe
+        // ));
 
     }
 
