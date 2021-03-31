@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         HOME
-         <div>
+        <div>
             <ul>
                 <li v-for="recipe in recipes" :key="recipe.id">
                     <router-link :to="`/recipe/${recipe.id}`">{{recipe.title}}</router-link>
@@ -13,10 +13,9 @@
 
 <script>
     export default {
-
         data(){
             return{
-                recipes:{}
+                recipes:{},
             }
         },
 
@@ -25,9 +24,6 @@
                 .then(response => this.recipes = response.data)
                 .catch(error => console.log(error));
 
-        },
-
-        mounted() {
         }
     }
 </script>

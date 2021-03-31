@@ -11,9 +11,11 @@ class ContactController extends Controller
     {
         $contacts = Contact::all();
 
-        return view('contact', array(
-            'contacts' => $contacts,
-        ));
+        return response()->json($contacts);
+
+        // return view('contact', array(
+        //     'contacts' => $contacts,
+        // ));
     }
 
     public function store(ContactRequest $request)
@@ -24,7 +26,7 @@ class ContactController extends Controller
             'message'=> 'required',
         ]));
 
-        return redirect('/contact');
+        // return redirect('/contact');
         /*
         $contact = new Contact(); //on instancie un nouveau projet
         $contact->name = request('name'); //on set le titre avec la donnée envoyée du formulaire

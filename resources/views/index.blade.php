@@ -20,12 +20,12 @@
     <div class="top-bar">
     <div class="top-bar-left">
 
-        @if(Auth::check())
             <ul class="menu">
                 <li class="menu-text"></li>
                 <li><router-link to="/">Home</router-link></li>
                 <li><router-link to="/recipes">Recettes</router-link></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><router-link to="/contact">Contact</router-link></li>
+                @if(Auth::check())
                 <li><a href="/admin/recette/create">Créer une recette</a></li>
                 <li>
                         <form method="POST" action="{{ route('logout') }}">
@@ -35,19 +35,12 @@
                             </x-dropdown-link>
                         </form>
                 </li>
-            </ul>
-
-        @else
-            <ul class="menu">
-                <li class="menu-text"></li>
-                <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/recipes">Recettes</router-link></li>
-                <li><a href="/contact">Contact</a></li>
+                @else
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Register</a></li>
+                @endif
             </ul>
 
-        @endif
 
     </div>
 </div>
@@ -69,6 +62,12 @@
 
     <router-view></router-view>
 </div>
+
+@if (Auth::check())
+    <script>window.authUser={!! json_encode(Auth::user()); !!};</script>
+@else
+    <script>window.authUser=null;</script>
+@endif
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

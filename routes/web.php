@@ -26,16 +26,22 @@ use App\Http\Controllers\CommentController;
 
 
 Route::get('/', function(){
-    return view('index');
+    return view('index', [
+        'auth_user' => Auth::user()
+    ]);
 });
 
 Route::get('/home/recipes',[HomeController::class, 'index'] );
 Route::get('/recipes',[RecipesController::class, 'index'] );
 Route::get('/recipe/{id}',[RecipesController::class, 'show']);
 
+Route::post('/contact/create', [ContactController::class, 'store']);
+
 Route::resources([
     '/admin/recipe' => RecipesController::class,
 ]);
+
+
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 // Route::get('/', 'HomeController@index');
@@ -48,7 +54,7 @@ Route::resources([
 ]);
 
 Route::get('/contact', [ContactController::class, 'index']);
-Route::post('/contact/create', [ContactController::class, 'store']);
+// Route::post('/contact/create', [ContactController::class, 'store']);
 
 
 Route::post('/comment/create', [CommentController::class, 'store']);

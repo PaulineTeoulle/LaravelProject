@@ -9,10 +9,12 @@
             <img :src="`/images/${this.recipe.media}`">
         </div>
 
-        <button v-on:click="deleteRecipe" class="button">Supprimer</button>
-        <button v-on:click="editRecipe" class="button">                    
-            <router-link :to="`/admin/recipe/${recipe.id}/edit`">Modifier</router-link>
-        </button>
+        <div v-if="this.authUser">
+            <button v-on:click="deleteRecipe" class="button">Supprimer</button>
+            <button v-on:click="editRecipe" class="button">                    
+                <router-link :to="`/admin/recipe/${recipe.id}/edit`">Modifier</router-link>
+            </button>
+        </div>
     </div>
 </template>
 
@@ -22,7 +24,8 @@
         data(){
             return{
                 recipe:{},
-                comments:{}
+                comments:{},
+                authUser: window.authUser
             }
         },
 
