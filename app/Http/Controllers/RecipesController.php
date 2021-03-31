@@ -69,11 +69,9 @@ class RecipesController extends Controller
     {
         //Gestion des images
         //TODO : verif si image existe deja => changer nom
-
         $urlString = $_SERVER['DOCUMENT_ROOT'];
         $info = pathinfo($urlString);
         $target_dir = $info['dirname'] . '\public\images\\';
-
         $file = request('media');
         if($file!=null)
             $filename = $file->getClientOriginalName();
@@ -90,10 +88,11 @@ class RecipesController extends Controller
         $recipe->ingredients = request('ingredients');
         $recipe->url = 'url static'; //STATIQUE
         $recipe->status = 'status static'; //STATIQUE
-        $recipe->media = $filename; //STATIQUE
+        $recipe->media = $filename;
         $recipe->save();
+        return 'retourne';
 
-        return redirect('/recettes');
+        // return redirect('/recettes');
     }
 
     /**

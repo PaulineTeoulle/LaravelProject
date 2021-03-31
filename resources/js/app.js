@@ -10,6 +10,7 @@ import Home from './components/Home.vue';
 import Recipes from './components/Recipes.vue';
 import Recipe from './components/Recipe.vue';
 import RecipeEdit from './components/RecipeEdit.vue';
+import RecipeCreate from './components/RecipeCreate.vue';
 import Contact from './components/Contact.vue';
 
 
@@ -30,6 +31,10 @@ const routes = [
     {
         path: '/admin/recipe/:id/edit',
         component: RecipeEdit
+    },
+    {
+        path: '/admin/recipe/create',
+        component: RecipeCreate
     },
     {
         path: '/contact',

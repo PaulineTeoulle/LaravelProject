@@ -26,7 +26,7 @@
                 <li><router-link to="/recipes">Recettes</router-link></li>
                 <li><router-link to="/contact">Contact</router-link></li>
                 @if(Auth::check())
-                <li><a href="/admin/recette/create">Créer une recette</a></li>
+                <li><router-link to="/admin/recipe/create">Créer une recette</router-link></li>
                 <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

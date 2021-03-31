@@ -50,7 +50,7 @@ Route::get('/dashboard',[HomeController::class, 'index'] );
 // Route::get('/recette/{url}',[RecipesController::class, 'show']);
 
 Route::resources([
-    '/admin/recette' => RecipesController::class,
+    '/admin/recipe' => RecipesController::class,
 ]);
 
 Route::get('/contact', [ContactController::class, 'index']);
