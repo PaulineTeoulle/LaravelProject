@@ -1867,6 +1867,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1915,8 +1933,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -2139,8 +2155,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -38105,110 +38119,158 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h2", [_vm._v("Contact")]),
+    _c("h3", { staticClass: "my-4" }, [_vm._v("Contact")]),
     _vm._v(" "),
     this.authUser
       ? _c("div", [
-          _c("h3", [_vm._v("contact enregistrés")]),
+          _c("h5", [_vm._v("contact enregistrés")]),
           _vm._v(" "),
           _c(
             "ul",
+            { staticClass: "d-flex justify-content-start flex-wrap mx-0" },
             _vm._l(_vm.contacts, function(contact) {
-              return _c("li", { key: contact.id }, [
-                _c("p", [
-                  _vm._v("Nom : " + _vm._s(contact.name) + " "),
-                  _c("br"),
-                  _vm._v(" email : " + _vm._s(contact.email))
-                ])
-              ])
+              return _c(
+                "li",
+                {
+                  key: contact.id,
+                  staticClass: "p-2",
+                  staticStyle: { "list-style-type": "none" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "card", staticStyle: { width: "18rem" } },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h5", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(contact.name))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "h6",
+                          { staticClass: "card-subtitle mb-2 text-muted" },
+                          [_vm._v(_vm._s(contact.email))]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }, [
+                          _vm._v(_vm._s(contact.message))
+                        ])
+                      ])
+                    ]
+                  )
+                ]
+              )
             }),
             0
           )
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.submit($event)
-          }
-        }
-      },
-      [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.contact.name,
-              expression: "contact.name"
-            }
-          ],
-          attrs: { type: "text", name: "name", placeholder: "nom" },
-          domProps: { value: _vm.contact.name },
+    _c("div", { staticClass: "container mx-auto" }, [
+      _c("h5", [_vm._v("Contacter quelqu'un")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "container",
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.contact, "name", $event.target.value)
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
             }
           }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.contact.email,
-              expression: "contact.email"
-            }
-          ],
-          attrs: { type: "text", name: "mail", placeholder: "email" },
-          domProps: { value: _vm.contact.email },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        },
+        [
+          _c("div", { staticClass: "row" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.contact.name,
+                  expression: "contact.name"
+                }
+              ],
+              staticClass: "col",
+              attrs: { type: "text", name: "name", placeholder: "nom" },
+              domProps: { value: _vm.contact.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.contact, "name", $event.target.value)
+                }
               }
-              _vm.$set(_vm.contact, "email", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.contact.message,
-              expression: "contact.message"
-            }
-          ],
-          attrs: { name: "message", placeholder: "message" },
-          domProps: { value: _vm.contact.message },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.contact.email,
+                  expression: "contact.email"
+                }
+              ],
+              staticClass: "col",
+              attrs: { type: "email", name: "mail", placeholder: "email" },
+              domProps: { value: _vm.contact.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.contact, "email", $event.target.value)
+                }
               }
-              _vm.$set(_vm.contact, "message", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("button", { staticClass: "button", attrs: { type: "submit" } }, [
-          _vm._v("Envoyer")
-        ])
-      ]
-    )
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.contact.message,
+                  expression: "contact.message"
+                }
+              ],
+              staticClass: "col",
+              attrs: { name: "message", placeholder: "message" },
+              domProps: { value: _vm.contact.message },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.contact, "message", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary my-4", attrs: { type: "submit" } },
+        [_vm._v("Envoyer")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38232,25 +38294,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._v("\n    HOME\n    "),
-    _c("div", [
-      _c(
-        "ul",
-        _vm._l(_vm.recipes, function(recipe) {
-          return _c(
-            "li",
-            { key: recipe.id },
-            [
-              _c("router-link", { attrs: { to: "/recipe/" + recipe.id } }, [
-                _vm._v(_vm._s(recipe.title))
-              ])
-            ],
-            1
-          )
-        }),
-        0
-      )
-    ])
+    _c("h3", { staticClass: "my-4" }, [_vm._v("Nos 3 dernières recettes")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "list-group mx-0" },
+      _vm._l(_vm.recipes, function(recipe) {
+        return _c(
+          "li",
+          { key: recipe.id, staticClass: "list-group-item" },
+          [
+            _c("router-link", { attrs: { to: "/recipe/" + recipe.id } }, [
+              _vm._v(_vm._s(recipe.title))
+            ])
+          ],
+          1
+        )
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = []
@@ -38562,25 +38624,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._v("\n    RECETTES\n    "),
-    _c("div", [
-      _c(
-        "ul",
-        _vm._l(_vm.recipes, function(recipe) {
-          return _c(
-            "li",
-            { key: recipe.id },
-            [
-              _c("router-link", { attrs: { to: "/recipe/" + recipe.id } }, [
-                _vm._v(_vm._s(recipe.title))
-              ])
-            ],
-            1
-          )
-        }),
-        0
-      )
-    ])
+    _c("h3", { staticClass: "my-4" }, [_vm._v("Nos recettes")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "list-group mx-0" },
+      _vm._l(_vm.recipes, function(recipe) {
+        return _c(
+          "li",
+          { key: recipe.id, staticClass: "list-group-item" },
+          [
+            _c("router-link", { attrs: { to: "/recipe/" + recipe.id } }, [
+              _vm._v(_vm._s(recipe.title))
+            ])
+          ],
+          1
+        )
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = []

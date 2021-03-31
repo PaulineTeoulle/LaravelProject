@@ -1,22 +1,40 @@
 <template>
     <div class="container">
-        <h2>Contact</h2>
+        <h3 class="my-4">Contact</h3>
 
         <div v-if="this.authUser">
-            <h3>contact enregistrés</h3>
-            <ul>
-                <li v-for="contact in contacts" :key="contact.id">
-                    <p>Nom : {{contact.name}} <br> email : {{contact.email}}</p>
+            <h5>contact enregistrés</h5>
+            <ul class="d-flex justify-content-start flex-wrap mx-0">
+                <li class="p-2" style="list-style-type: none" v-for="contact in contacts" :key="contact.id">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{contact.name}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{contact.email}}</h6>
+                            <p class="card-text">{{contact.message}}</p>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
 
-        <form @submit.prevent="submit">
-            <input type="text" name="name" v-model="contact.name" placeholder="nom">
-            <input type="text" name="mail" v-model="contact.email" placeholder="email">
-            <textarea name="message" v-model="contact.message" placeholder="message"/>     
-            <button type="submit" class="button">Envoyer</button>
-        </form>
+        <div class="container mx-auto">
+        <h5>Contacter quelqu'un</h5>
+            <form class="container" @submit.prevent="submit">
+                <div class="row">
+                    <input class="col" type="text" name="name" v-model="contact.name" placeholder="nom">
+                    <input class="col" type="email" name="mail" v-model="contact.email" placeholder="email">
+                </div>
+
+                <div class="row">
+                    <textarea class="col" name="message" v-model="contact.message" placeholder="message"/>   
+                </div>
+
+                <div class="row">  
+                    <button type="submit" class="btn btn-primary my-4">Envoyer</button>
+                </div>
+            </form>
+        </div>
+        </div>
     </div>
 </template>
 
