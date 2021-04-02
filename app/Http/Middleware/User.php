@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 use Closure;
-class Admin
+class User
 {
     /**
      * Handle an incoming request.
