@@ -26,13 +26,13 @@ class CommentController extends Controller{
         $comment->date = date('Y-m-d H:i:s');
         $comment->save();
 
-        $recipe = Recipe::where('id',$comment->recipe_id)->first();
-        $comments = Comment::all()->where('recipe_id',$comment->recipe_id);
+        // $recipe = Recipe::where('id',$comment->recipe_id)->first();
+        // $comments = Comment::all()->where('recipe_id',$comment->recipe_id);
 
-        return view('/recipes/single',  array(
-            'recipe' => $recipe,
-            'comments' =>$comments,
-        ));
+        // return view('/recipes/single',  array(
+        //     'recipe' => $recipe,
+        //     'comments' =>$comments,
+        // ));
     }
 
     public function show()
@@ -44,14 +44,14 @@ class CommentController extends Controller{
         $comment = Comment::where('id',$id)->first();
         Comment::where('id', $comment->id)->first()->delete();
 
-        $recipe = Recipe::where('id',$comment->recipe_id)->first();
-        $comments = Comment::all()->where('recipe_id',$comment->recipe_id);
+        // $recipe = Recipe::where('id',$comment->recipe_id)->first();
+        // $comments = Comment::all()->where('recipe_id',$comment->recipe_id);
 
 
-        return view('/recipes/single',  array(
-            'recipe' => $recipe,
-            'comments' =>$comments,
-        ));
+        // return view('/recipes/single',  array(
+        //     'recipe' => $recipe,
+        //     'comments' =>$comments,
+        // ));
     }
 
 

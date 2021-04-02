@@ -1994,30 +1994,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       recipe: {},
       comments: {},
+      message: null,
       authUser: window.authUser
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios.get('/recipe/' + this.$route.params.id).then(function (response) {
-      _this.recipe = response.data.recipe;
-      _this.comments = response.data.comments;
-    })["catch"](function (error) {
-      return console.log(error);
-    });
+    this.getRecipe();
   },
   methods: {
-    deleteRecipe: function deleteRecipe() {
+    getRecipe: function getRecipe() {
+      var _this = this;
+
+      axios.get('/recipe/' + this.$route.params.id).then(function (response) {
+        _this.recipe = response.data.recipe;
+        _this.comments = response.data.comments;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    deleteComment: function deleteComment(comment_id) {
       var _this2 = this;
 
+      axios.post('/comment/delete/' + comment_id).then(function (response) {
+        return _this2.$router.go();
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    deleteRecipe: function deleteRecipe() {
+      var _this3 = this;
+
       axios["delete"]('/admin/recipe/' + this.$route.params.id).then(function (response) {
-        return _this2.$router.push('/');
+        return _this3.router.push('/recipes');
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -2028,9 +2057,22 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    submit: function submit() {
+      var _this4 = this;
+
+      if (this.message != null) {
+        var formData = new FormData();
+        formData.append("recipe_id", this.recipe.id);
+        formData.append("content", this.message);
+        axios.post('/comment/create', formData).then(function (response) {
+          return _this4.$router.go(0);
+        })["catch"](function (error) {
+          return console.log(error);
+        });
+      }
     }
-  },
-  mounted: function mounted() {}
+  }
 });
 
 /***/ }),
@@ -38377,7 +38419,83 @@ var render = function() {
                 1
               )
             ])
-          : _vm._e()
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", [
+          _c("h4", [_vm._v("Commentaires")]),
+          _vm._v(" "),
+          _vm.authUser
+            ? _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.submit($event)
+                    }
+                  }
+                },
+                [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.message,
+                        expression: "message"
+                      }
+                    ],
+                    attrs: { name: "comment" },
+                    domProps: { value: _vm.message },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.message = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "button", attrs: { type: "submit" } },
+                    [_vm._v("Poster")]
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            _vm._l(_vm.comments, function(comment) {
+              return _c("div", { key: comment.id }, [
+                _c("h5", [
+                  _vm._v(_vm._s(comment.author) + " "),
+                  _c("small", [_vm._v("(" + _vm._s(comment.date) + ")")])
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(comment.content))]),
+                _vm._v(" "),
+                _vm.authUser
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteComment(comment.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Supprimer")]
+                    )
+                  : _vm._e()
+              ])
+            }),
+            0
+          )
+        ])
       ])
     : _vm._e()
 }
