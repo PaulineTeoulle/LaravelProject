@@ -23,11 +23,11 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
-        $author_id = User::all()->random()->id;
-        $recipe_id = Recipe::all()->random()->id;
+        $author_id = User::all()->random();
+        $recipe_id = Recipe::all()->random();
         return [
-            'author_id'=>$author_id,
-            'recipe_id' => $recipe_id,
+            'author_id'=>$author_id->id,
+            'recipe_id' => $recipe_id->id,
             'content' => $this->faker->text,
             'date' => $this->faker->dateTime,
         ];
