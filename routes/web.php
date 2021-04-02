@@ -5,6 +5,11 @@ use App\Http\Controllers\GestionRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RecipesController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,11 +26,6 @@ use Illuminate\Support\Facades\Route;
 //})->middleware(['auth'])->name('dashboard');
 
 
-
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\RecipesController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CommentController;
 
 
 /*Route::middleware('admin')->group(function () {

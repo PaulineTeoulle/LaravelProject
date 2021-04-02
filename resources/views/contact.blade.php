@@ -28,6 +28,7 @@
                     <div class="callout">
                         <form method="POST" action="/contact/create">
                             @csrf
+                            @method('POST')
                             <div>
                                 @error('name')
                                 <p style="color:red">{{$errors->first('name')}}</p>

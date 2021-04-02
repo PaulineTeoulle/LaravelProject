@@ -30,7 +30,4 @@ class ContactRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-    }
 }
