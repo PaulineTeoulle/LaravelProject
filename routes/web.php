@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CaptchaServiceController;
+use App\Http\Controllers\GestionRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,20 +33,24 @@ use App\Http\Controllers\CommentController;
 });*/
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/dashboard',[HomeController::class, 'index']);
-Route::get('/recettes', [RecipesController::class, 'index']);
-Route::get('/recette/{url}',[RecipesController::class, 'show']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/recettes', [RecipesController::class, 'index'])->name('recettes');
+Route::get('/recette/{url}',[RecipesController::class, 'show'])->name('recette');
 
-Route::get('/contact', [ContactController::class, 'index']);
-Route::post('/contact/create', [ContactController::class, 'store']);
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/create', [ContactController::class, 'store'])->name('contactCreate');
 
 Route::resources([
     '/admin/recette' => RecipesController::class,
 ]);
 
-Route::post('/comment/create', [CommentController::class, 'store']);
-Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
+Route::post('/comment/create', [CommentController::class, 'store'])->name('commentCreate');
+Route::post('/comment/delete/{id}', [CommentController::class, 'destroy'])->name('commentDelete');
+
+
+Route::get('/gestion', [GestionRoleController::class, 'index'])->name('gestion');
+Route::get('/gestion/search', [GestionRoleController::class, 'search'])->name('gestionSearch');
+Route::post('/gestion/update/{id}', [GestionRoleController::class, 'update'])->name('gestionUpdate');
 
 
 require __DIR__.'/auth.php';
