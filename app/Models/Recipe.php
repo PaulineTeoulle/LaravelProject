@@ -27,6 +27,9 @@ class Recipe extends Model
         return $this->belongsTo(User::class,'author_id');
     }
 
-
+   /* function userCanEdit(User $user)
+    {
+        return $user->isAdmin() || $this->author_id == $user->id;
+    }*/
 
 }

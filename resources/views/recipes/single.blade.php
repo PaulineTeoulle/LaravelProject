@@ -15,19 +15,19 @@
                 Ingrédients : {{$recipe->ingredients}}<br><br>
                 Content : {{$recipe->content}}<br><br>
 
-                @if(Auth::check())
+                @if(Auth::user()->id == $recipe->author->id)
                     <form method="GET" action="/admin/recette/{{$recipe->id}}/edit">
                         @method('GET')
                         @csrf
                         <button type="submit" class="button">Editer</button>
                     </form>
-                    @if(Auth::user()&& Auth::user()->isAdmin())
-                        <form method="POST" action="/admin/recette/{{$recipe->id}}">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="button">Supprimer</button>
-                        </form>
-                    @endif
+                @endif
+                @if((Auth::user()->id == $recipe->author->id) || Auth::user()->isAdmin())
+                    <form method="POST" action="/admin/recette/{{$recipe->id}}">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="button">Supprimer</button>
+                    </form>
                 @endif
             </div>
         </div>
@@ -46,7 +46,7 @@
                             <h5>{{$comment->author->name }} <small>({{  $comment->date}})</small></h5>
                             <p>{{ $comment->content}}</p>
 
-                            @if(Auth::user()&& Auth::user()->isAdmin())
+                            @if((Auth::user()->id == $comment->author->id) || Auth::user()->isAdmin())
                                 <form method="POST" action="/comment/delete/{{$comment->id}}">
                                     @csrf
                                     <button type="submit" class="button">Supprimer</button>

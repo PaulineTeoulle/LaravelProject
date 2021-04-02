@@ -22,6 +22,11 @@ class User extends Authenticatable
     public function isUser() {
         return $this->role === 'user';
     }
+
+
+
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -61,6 +66,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Recipe::class,'author_id');
     }
-
 }
 
