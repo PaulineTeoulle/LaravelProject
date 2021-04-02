@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CaptchaServiceController;
 use App\Http\Controllers\GestionRoleController;
+use App\Http\Controllers\IngredientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,5 +53,7 @@ Route::get('/gestion', [GestionRoleController::class, 'index'])->name('gestion')
 Route::get('/gestion/search', [GestionRoleController::class, 'search'])->name('gestionSearch');
 Route::post('/gestion/update/{id}', [GestionRoleController::class, 'update'])->name('gestionUpdate');
 
+Route::get('/ingredient',[IngredientController::class, 'index'])->name('ingredient');
+Route::post('/ingredient/create',[IngredientController::class, 'store'])->name('ingredientCreate');
 
 require __DIR__.'/auth.php';
