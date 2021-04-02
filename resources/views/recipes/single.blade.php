@@ -15,14 +15,14 @@
                 Ingrédients : {{$recipe->ingredients}}<br><br>
                 Content : {{$recipe->content}}<br><br>
 
-                @if(Auth::user()->id == $recipe->author->id)
+                @if(Auth::user() && Auth::user()->id == $recipe->author->id)
                     <form method="GET" action="/admin/recette/{{$recipe->id}}/edit">
                         @method('GET')
                         @csrf
                         <button type="submit" class="button">Editer</button>
                     </form>
                 @endif
-                @if((Auth::user()->id == $recipe->author->id) || Auth::user()->isAdmin())
+                @if((Auth::user() && Auth::user()->id == $recipe->author->id) || (Auth::user() && Auth::user()->isAdmin()))
                     <form method="POST" action="/admin/recette/{{$recipe->id}}">
                         @method('DELETE')
                         @csrf
@@ -46,7 +46,7 @@
                             <h5>{{$comment->author->name }} <small>({{  $comment->date}})</small></h5>
                             <p>{{ $comment->content}}</p>
 
-                            @if((Auth::user()->id == $comment->author->id) || Auth::user()->isAdmin())
+                            @if((Auth::user() && Auth::user()->id == $comment->author->id) || (Auth::user() && Auth::user()->isAdmin()))
                                 <form method="POST" action="/comment/delete/{{$comment->id}}">
                                     @csrf
                                     <button type="submit" class="button">Supprimer</button>
@@ -67,8 +67,8 @@
                             @csrf
                             <input value="{{$recipe->id}}" type="hidden" name="recipe_id"/>
                             <label>
-                                <textarea type="text" name="content"
-                                          placeholder="Ecrivez votre commentaire ici"></textarea>
+                   <textarea type="text" name="content"
+                             placeholder="Ecrivez votre commentaire ici"></textarea>
                             </label>
                             <button type="submit" class="button">Envoyer</button>
                         </form>
