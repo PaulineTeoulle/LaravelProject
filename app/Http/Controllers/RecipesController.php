@@ -122,9 +122,6 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
-
         $recipe = Recipe::findOrFail($id);
         $input = $request->all();
         $recipe->fill($input)->save();

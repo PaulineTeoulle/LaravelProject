@@ -51,6 +51,8 @@ Route::post('/gestion/update/{id}', [GestionRoleController::class, 'update'])->n
 
 Route::get('/ingredient',[IngredientController::class, 'index'])->name('ingredient');
 Route::post('/ingredient/create',[IngredientController::class, 'store'])->name('ingredientCreate');
+Route::get('/ingredient/edit/{id}', [IngredientController::class, 'edit'])->name('ingredientEdit');
+Route::post('/ingredient/update/{id}', [IngredientController::class, 'update'])->name('ingredientUpdate');
 Route::get('/ingredient/search', [IngredientController::class, 'search'])->name('ingredientSearch');
 
 

@@ -14,20 +14,30 @@
                 Auteur : {{$recipe->author->name}}<br><br>
                 Content : {{$recipe->content}}<br><br>
 
-                Ingredients et quantité:
-                @foreach($ingredients as $ingredient)
-                    <div>
-                       {{ $ingredient->name }} | {{ $ingredient->quantity}}
-                    </div>
-                @endforeach
-
                 @if(Auth::user() && Auth::user()->id == $recipe->author->id)
                     <form method="GET" action="/admin/recette/{{$recipe->id}}/edit">
                         @method('GET')
                         @csrf
-                        <button type="submit" class="button">Editer</button>
+                        <button type="submit" class="button">Editer le titre et le contenu</button>
                     </form>
                 @endif
+
+                Ingredients et quantité:
+
+                @foreach($ingredients as $ingredient)
+                    <div>
+                        {{ $ingredient->name }} | {{ $ingredient->quantity}}
+                    </div>
+                @endforeach
+
+
+                @if(Auth::user() && Auth::user()->id == $recipe->author->id)
+                    <form method ="GET" action="/ingredient/edit/{{$recipe->id}}">
+                        @method('GET')
+                        <button type="submit" class="button">Modifier les ingrédients</button>
+                    </form>
+                @endif
+
                 @if((Auth::user() && Auth::user()->id == $recipe->author->id) || (Auth::user() && Auth::user()->isAdmin()))
                     <form method="POST" action="/admin/recette/{{$recipe->id}}">
                         @method('DELETE')
