@@ -26,9 +26,6 @@ use App\Http\Controllers\CommentController;
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
 
-
-
-
 /*Route::middleware('admin')->group(function () {
     Route::get('/contact', [ContactController::class, 'index']);
 });*/
@@ -48,12 +45,13 @@ Route::resources([
 Route::post('/comment/create', [CommentController::class, 'store'])->name('commentCreate');
 Route::post('/comment/delete/{id}', [CommentController::class, 'destroy'])->name('commentDelete');
 
-
 Route::get('/gestion', [GestionRoleController::class, 'index'])->name('gestion');
 Route::get('/gestion/search', [GestionRoleController::class, 'search'])->name('gestionSearch');
 Route::post('/gestion/update/{id}', [GestionRoleController::class, 'update'])->name('gestionUpdate');
 
 Route::get('/ingredient',[IngredientController::class, 'index'])->name('ingredient');
 Route::post('/ingredient/create',[IngredientController::class, 'store'])->name('ingredientCreate');
+Route::get('/ingredient/search', [IngredientController::class, 'search'])->name('ingredientSearch');
+
 
 require __DIR__.'/auth.php';

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ingredient;
 use App\Models\Recipe;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IngredientController extends Controller
@@ -38,5 +39,22 @@ class IngredientController extends Controller
         ));
 
 
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $results = DB::table('recipes')
+            ->join('ingredient', function($join)
+            {
+                $join->on('recipes.id', '=', 'ingredient.recipe_id');
+
+            })->where('ingredient.name', 'LIKE',"%{$search}%")
+            ->get();
+
+        return view('recettes', array(
+            'recipes' => $results,
+        ));
     }
 }
