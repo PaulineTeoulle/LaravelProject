@@ -19,7 +19,6 @@ class CreateRecipesTable extends Migration
             $table->foreign('author_id')->references('id')->on('users');
             $table->string('title');
             $table->string('content');
-            $table->string('ingredients');
             $table->string('url');
             $table->string('tags')->nullable();
             $table->dateTime('date')->useCurrent();

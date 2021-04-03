@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @method static orderBy(string $string, string $string1)
- * @method static where(string $string, $title)
- */
+
 class Recipe extends Model
 {
     protected $table = 'recipes';
+    protected $primaryKey = 'id';
     use HasFactory;
 
 
@@ -27,9 +25,8 @@ class Recipe extends Model
         return $this->belongsTo(User::class,'author_id');
     }
 
-   /* function userCanEdit(User $user)
+    public function ingredient()
     {
-        return $user->isAdmin() || $this->author_id == $user->id;
-    }*/
-
+        return $this->hasMany(Ingredient::class);
+    }
 }
