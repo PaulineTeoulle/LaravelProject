@@ -12,8 +12,14 @@
             <div class="medium-6 large-5 cell large-offset-1">
                 <h3>{{$recipe->title}}</h3>
                 Auteur : {{$recipe->author->name}}<br><br>
-                Ingrédients : {{$recipe->ingredients}}<br><br>
                 Content : {{$recipe->content}}<br><br>
+
+                Ingredients et quantité:
+                @foreach($ingredients as $ingredient)
+                    <div>
+                       {{ $ingredient->name }} | {{ $ingredient->quantity}}
+                    </div>
+                @endforeach
 
                 @if(Auth::user() && Auth::user()->id == $recipe->author->id)
                     <form method="GET" action="/admin/recette/{{$recipe->id}}/edit">

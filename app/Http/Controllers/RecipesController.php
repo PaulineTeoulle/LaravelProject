@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Ingredient;
+use App\Models\LiaisonRecipeIngredient;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RecipesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function index()
     {
@@ -28,25 +31,28 @@ class RecipesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function show($id) {
         $recipe = Recipe::where('id',$id)->first();
 
+        $ingredients = Ingredient::where('recipe_id',$id)->get();
         $comments = Comment::all()->where('recipe_id',$id);
          return view('recipes/single', array(
                 'recipe' => $recipe,
                 'comments' =>$comments,
+             'ingredients' =>$ingredients
          ));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function create()
     {
+
         return view('recipes/create');
     }
 
@@ -54,7 +60,7 @@ class RecipesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -78,20 +84,25 @@ class RecipesController extends Controller
         $recipe->author_id = Auth::id();
         $recipe->title = request('title');
         $recipe->content = request('content');
-        $recipe->ingredients = request('ingredients');
         $recipe->url = 'url static'; //STATIQUE
         $recipe->status = 'status static'; //STATIQUE
         $recipe->media = $filename; //STATIQUE
         $recipe->save();
 
-        return redirect('/recettes');
+
+        $recipe = Recipe::where('id', $recipe->id)->get()->first();
+        $ingredients = Ingredient::where('id', $recipe->id)->get();
+        return view('recipes/ajout_ingredient', array( //Pass the recipe to the view
+            'recipe' => $recipe,
+            'ingredients'=> $ingredients
+        ));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function edit($id)
     {
@@ -107,7 +118,7 @@ class RecipesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function update(Request $request, $id)
     {
@@ -128,7 +139,7 @@ class RecipesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function destroy($id)
     {

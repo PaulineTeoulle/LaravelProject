@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     protected $table = 'recipes';
+    protected $primaryKey = 'id';
     use HasFactory;
 
 
@@ -22,14 +23,6 @@ class Recipe extends Model
     public function author()
     {
         return $this->belongsTo(User::class,'author_id');
-    }
-
-    /**
-     * Get the ingredients for the blog post.
-     */
-    public function ingredients()
-    {
-        return $this->hasMany(Ingredient::class);
     }
 
 }

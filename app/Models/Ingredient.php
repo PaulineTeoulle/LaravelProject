@@ -12,8 +12,9 @@ class Ingredient extends Model
     protected $table = 'ingredient';
     use HasFactory;
 
+
     public function recipe()
     {
-        return $this->belongsToMany(Recipe::class);
+        return $this->belongsTo(Recipe::class,'id');
     }
 }
