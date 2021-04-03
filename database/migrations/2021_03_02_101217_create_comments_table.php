@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->integer('recipe_id');
             $table->foreign('recipe_id')->references('id')->on('recipes');
             $table->string('content');
-            $table->dateTime('date');
+            $table->dateTime('date')->useCurrent();
             $table->timestamps();
         });
     }

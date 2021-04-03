@@ -15,12 +15,11 @@ class HomeController extends Controller
     public function index()
     {
         $recipes = Recipe::orderBy('created_at', 'desc')->take(3)->get();
-
         // return view('welcome',array(
         //     'recipes' => $recipes,
         // ));
 
         return response()->json($recipes);
-
     }
+
 }
