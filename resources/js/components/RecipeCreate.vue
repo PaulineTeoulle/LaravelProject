@@ -35,12 +35,14 @@
                 formData.append("title", this.recipe.title);
                 formData.append("content", this.recipe.content);
                 formData.append("ingredients", this.recipe.ingredients);
-                formData.append("media", this.recipe.media);
-
+                // evite la string "null"
+                if(this.recipe.media){
+                    formData.append("media", this.recipe.media);
+                }
                 axios.post('/admin/recipe', formData)
                     .then(this.$router.push('/'))
                     .catch(error => console.log(error));
-            },
+             },
 
             onFileChange(event){
                 this.recipe.media = event.target.files[0];

@@ -71,10 +71,11 @@ class RecipesController extends Controller
         $info = pathinfo($urlString);
         $target_dir = $info['dirname'] . '\public\images\\';
         $file = request('media');
-        if($file!=null)
+        if(isset($file)){
             $filename = $file->getClientOriginalName();
-        else
+        } else {
             $filename = null;
+        }
 
         $target_file = $target_dir . $filename;
         move_uploaded_file($file, $target_file);
@@ -85,6 +86,7 @@ class RecipesController extends Controller
         $recipe->content = request('content');
         $recipe->url = 'url static'; //STATIQUE
         $recipe->status = 'status static'; //STATIQUE
+        $recipe->ingredients = request('ingredients'); 
         $recipe->media = $filename;
         $recipe->save();
     }
