@@ -39,11 +39,10 @@ class RecipesController extends Controller
     public function show($id) {
         $recipe = Recipe::where('id',$id)->first();
         $comments = Comment::all()->where('recipe_id',$id);
-        $ingredients = Ingredient::where('recipe_id',$id)->get();
+        // $ingredients = Ingredient::where('recipe_id',$id)->get();
         $author = User::where('id', $recipe->author_id)->first();
-
         $recipe->author = $author;
-        $response = ["recipe" => $recipe, "comments" => $comments, "ingredients" => $ingredients];
+        $response = ["recipe" => $recipe, "comments" => $comments]; //"ingredients" => $ingredients];
         return response()->json($response);
     }
 

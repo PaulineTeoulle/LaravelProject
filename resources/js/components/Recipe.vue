@@ -27,7 +27,7 @@
                 <div v-for="comment in comments" :key="comment.id">
                     <h5>{{comment.author}} <small>({{comment.date}})</small></h5>
                     <p>{{comment.content}}</p>
-                    <button v-if="authUser" v-on:click="deleteComment(comment.id)" class="btn btn-danger">Supprimer</button>
+                    <button v-if="authUser.id == comment.author_id" v-on:click="deleteComment(comment.id)" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>
         </div>

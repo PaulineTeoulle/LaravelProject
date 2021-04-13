@@ -11,9 +11,7 @@ class GestionRoleController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('gestion', array(
-            'users' => $users,
-        ));
+        return response()->json($users);
     }
 
     /**
@@ -34,14 +32,12 @@ class GestionRoleController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
+        $search = request('search');
 
         $users = User::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->get();
 
-        return view('gestion', array(
-            'users' => $users,
-        ));
+        return response()->json($users);
     }
 }

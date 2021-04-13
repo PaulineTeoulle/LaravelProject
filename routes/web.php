@@ -46,6 +46,12 @@ Route::resources([
     '/admin/recipe' => RecipesController::class,
 ]);
 
+Route::get('/manage/users',[GestionRoleController::class, 'index'] );
+Route::get('/manage/search/users',[GestionRoleController::class, 'search'])->name('gestionSearch');
+
+
+
+
 Route::get('/dashboard',[HomeController::class, 'index'] );
 
 Route::get('/contact', [ContactController::class, 'index']);
