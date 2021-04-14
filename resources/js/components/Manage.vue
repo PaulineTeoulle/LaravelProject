@@ -13,7 +13,7 @@
                     <div class="row">
                         <p class="col-5">nom : {{user.name}}</p>
                         <p class="col-5">e-mail : {{user.email}}</p>
-                        <p class="col-2">edit</p>
+                        <p class="col-2">{{user}}</p>
                     </div>
                 </li>
             </ul>

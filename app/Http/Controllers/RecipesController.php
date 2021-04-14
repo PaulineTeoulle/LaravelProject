@@ -86,9 +86,13 @@ class RecipesController extends Controller
         $recipe->content = request('content');
         $recipe->url = 'url static'; //STATIQUE
         $recipe->status = 'status static'; //STATIQUE
-        $recipe->ingredients = request('ingredients'); 
+        // $recipe->ingredients = request('ingredients'); 
         $recipe->media = $filename;
         $recipe->save();
+        // redirect()->route('/ingredients/create', [
+        //     'recipe_id' => 'test',
+        //     'ingredients' => request('ingredients'),
+        // ]);
     }
 
     /**

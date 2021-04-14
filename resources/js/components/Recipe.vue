@@ -9,7 +9,7 @@
             <img :src="`/images/${this.recipe.media}`">
         </div>
 
-        <div v-if="this.authUser">
+        <div v-if="authUser.id == recipe.author_id || authUser.role == 'admin'">
             <button v-on:click="deleteRecipe" class="button">Supprimer</button>
             <button v-on:click="editRecipe" class="button">                    
                 <router-link :to="`/admin/recipe/${recipe.id}/edit`">Modifier</router-link>
@@ -27,7 +27,7 @@
                 <div v-for="comment in comments" :key="comment.id">
                     <h5>{{comment.author}} <small>({{comment.date}})</small></h5>
                     <p>{{comment.content}}</p>
-                    <button v-if="authUser.id == comment.author_id" v-on:click="deleteComment(comment.id)" class="btn btn-danger">Supprimer</button>
+                    <button v-if="authUser.id == comment.author_id || authUser.role == 'admin'" v-on:click="deleteComment(comment.id)" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>
         </div>

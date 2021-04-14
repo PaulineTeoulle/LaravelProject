@@ -24,6 +24,7 @@ class IngredientController extends Controller
 
     public function store()
     {
+        return 'test';
         $ingredient = new Ingredient();
         $ingredient->name = request('name');
         $ingredient->quantity = request('quantity');
