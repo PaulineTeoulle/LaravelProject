@@ -89,9 +89,8 @@ class RecipesController extends Controller
         $recipe->media = $filename; //STATIQUE
         $recipe->save();
 
-
         $recipe = Recipe::where('id', $recipe->id)->get()->first();
-        $ingredients = Ingredient::where('id', $recipe->id)->get();
+        $ingredients = null;
         return view('recipes/ajout_ingredient', array( //Pass the recipe to the view
             'recipe' => $recipe,
             'ingredients'=> $ingredients

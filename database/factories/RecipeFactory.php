@@ -29,7 +29,6 @@ class RecipeFactory extends Factory
             'author_id'=> $author_id,
             'title' => $this->faker->text,
             'content' => $this->faker->text,
-            'ingredients' => $this->faker->text,
             'url' => $this->faker->url,
             'tags' => $this->faker->text,
             'date' => $this->faker->dateTime,
