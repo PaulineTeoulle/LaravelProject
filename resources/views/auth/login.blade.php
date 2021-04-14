@@ -39,7 +39,14 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
-
+            <div class="container">
+                <p>
+                    <!-- Lien de redirection vers Google -->
+                    <a href="{{ route('socialite.redirect', 'google') }}" title="Connexion/Inscription avec Google" class="btn btn-link"  >Continuer avec Google</a>
+                    <!-- Lien de redirection vers Github -->
+                    <a href="{{ route('socialite.redirect', 'github') }}" title="Connexion/Inscription avec Github" class="btn btn-link"  >Continuer avec Github</a>
+                </p>
+            </div>
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
@@ -52,5 +59,7 @@
                 </x-button>
             </div>
         </form>
+
+
     </x-auth-card>
 </x-guest-layout>

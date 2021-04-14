@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CaptchaServiceController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\GestionRoleController;
 use App\Http\Controllers\IngredientController;
 use Illuminate\Support\Facades\Auth;
@@ -55,5 +56,9 @@ Route::get('/ingredient/edit/{id}', [IngredientController::class, 'edit'])->name
 Route::post('/ingredient/update/{id}', [IngredientController::class, 'update'])->name('ingredientUpdate');
 Route::get('/ingredient/search', [IngredientController::class, 'search'])->name('ingredientSearch');
 
+
+Route::get("/loginRegister", [SocialiteController::class, 'loginRegister'])->name('socialite.loginRegister');
+Route::get("/redirect/{provider}",  [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get("/callback/{provider}",  [SocialiteController::class, 'callback'])->name('socialite.callback');
 
 require __DIR__.'/auth.php';
