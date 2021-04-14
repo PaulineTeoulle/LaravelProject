@@ -30,7 +30,6 @@
                     </div>
                 @endforeach
 
-
                 @if(Auth::user() && Auth::user()->id == $recipe->author->id)
                     <form method ="GET" action="/ingredient/edit/{{$recipe->id}}">
                         @method('GET')
@@ -69,8 +68,6 @@
                                 </form>
                                 <hr>
                             @endif
-
-
                         @endforeach
                     </div>
                 </div>
