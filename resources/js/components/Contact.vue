@@ -1,8 +1,7 @@
 <template>
     <div class="container">
         <h3 class="my-4">Contact</h3>
-
-        <div v-if="this.authUser">
+        <div v-if="authUser.role == 'admin'">
             <h5>contact enregistrés</h5>
             <ul class="d-flex justify-content-start flex-wrap mx-0">
                 <li class="p-2" style="list-style-type: none" v-for="contact in contacts" :key="contact.id">
@@ -33,7 +32,6 @@
                     <button type="submit" class="btn btn-primary my-4">Envoyer</button>
                 </div>
             </form>
-        </div>
         </div>
     </div>
 </template>

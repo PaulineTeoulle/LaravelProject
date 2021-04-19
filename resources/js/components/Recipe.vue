@@ -104,7 +104,7 @@
                     formData.append("content", this.message);
 
                     axios.post('/comment/create', formData)
-                        .then(response => this.$router.go(0))
+                        .then()
                         .catch(error => console.log(error));
                 }                
             }
