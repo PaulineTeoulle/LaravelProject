@@ -4,7 +4,6 @@
             <div class="col-7">
                 <h3>{{recipe.title}}</h3>
                 <p>Auteur : {{recipe.author.name}}</p>
-                <p>Ingrédients : {{recipe.ingredients}}</p>
                 <p>Content : {{recipe.content}}</p>
             </div>
             <div v-if="Object.keys(ingredients).length > 0" class="col-5">
@@ -26,9 +25,9 @@
 
         <div v-if="authUser.id == recipe.author_id || authUser.role == 'admin'">
             <button v-on:click="deleteRecipe" class="button">Supprimer</button>
-            <button v-on:click="editRecipe" class="button">                    
-                <router-link :to="`/admin/recipe/${recipe.id}/edit`">Modifier</router-link>
-            </button>
+            <router-link :to="`/admin/recipe/${recipe.id}/edit`"><button v-on:click="editRecipe" class="button">                    
+                Modifier
+            </button></router-link>
         </div>
 
         <div>
@@ -87,7 +86,7 @@
 
             deleteRecipe:function(){
                 axios.delete('/admin/recipe/' + this.$route.params.id)
-                .then(response => this.router.push('/recipes'))
+                .then(response => this.$router.push('/recipes'))
                 .catch(error => console.log(error));
 
             },

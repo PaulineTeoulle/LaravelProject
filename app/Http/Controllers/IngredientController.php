@@ -64,23 +64,10 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $ingredient = Ingredient::where('id',$id)->get()->first();
 
         $input = $request->all();
         $ingredient->fill($input)->save();
-
-        $recipe = Recipe::where('id', $ingredient->recipe_id)->first();
-        $ingredients = Ingredient::where('recipe_id',$ingredient->recipe_id)->get();
-
-        $comments = Comment::all()->where('recipe_id',$ingredient->recipe_id);
-
-        return view('recipes/single', array(
-            'recipe' => $recipe,
-            'comments' =>$comments,
-            'ingredients' =>$ingredients
-        ));
-
     }
 
     public function search(Request $request)

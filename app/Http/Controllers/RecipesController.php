@@ -103,7 +103,9 @@ class RecipesController extends Controller
     public function edit($id)
     {
         $recipe = Recipe::where('id',$id)->first(); //get first recipe with recipe_nam == $recipe_name
-        return response()->json($recipe);
+        $ingredients = Ingredient::where('recipe_id',$id)->get();
+        $response = ["recipe" => $recipe, "ingredients" => $ingredients];
+        return response()->json($response);
     }
 
     /**
@@ -128,11 +130,11 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-        Recipe::findOrFail($id)->delete();
-        $recipes = Recipe::all();
-        return view('recettes',array(
-            'recipes' => $recipes,
-        ));
+        $recipe = Recipe::findOrFail($id);
+        $ingredients = Ingredient::where('recipe_id',$id)->get();
+        foreach($ingredients as $ingredient){
+            $ingredient->delete();
+        }
+        $recipe->delete();
     }
-
 }
