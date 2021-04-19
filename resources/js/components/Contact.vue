@@ -54,7 +54,7 @@
         },
 
         created(){
-            axios.get('/contact/')
+            axios.get('/contact')
                 .then(response => this.contacts = response.data)
                 .catch(error => console.log(error));
         },

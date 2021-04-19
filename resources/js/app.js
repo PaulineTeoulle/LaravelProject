@@ -12,6 +12,8 @@ import Recipe from './components/Recipe.vue';
 import RecipeEdit from './components/RecipeEdit.vue';
 import RecipeCreate from './components/RecipeCreate.vue';
 import Contact from './components/Contact.vue';
+import Manage from './components/Manage.vue';
+
 
 
 
@@ -39,6 +41,10 @@ const routes = [
     {
         path: '/contact',
         component: Contact
+    },
+    {
+        path: '/manage',
+        component: Manage
     },
 ]
 

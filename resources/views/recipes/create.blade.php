@@ -15,23 +15,19 @@
                                     @error('title')
                                     <p style="color:red">{{$errors->first('title')}}</p>
                                     @enderror
-                                    <input class="form-control" type="text" name="title" placeholder="Titre de la recette"  value="{{old('title')}}">
+                                    <input class="form-control" type="text" name="title"
+                                           placeholder="Titre de la recette" value="{{old('title')}}">
                                 </div>
+
                             </div>
+
                             <div class="row">
                                 <div class="medium-6 columns">
                                     @error('content')
                                     <p style="color:red">{{$errors->first('content')}}</p>
                                     @enderror
-                                    <textarea name="content" placeholder="Description de la recette">{{old('content')}}</textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="medium-6 columns">
-                                    @error('ingredients')
-                                    <p style="color:red">{{$errors->first('ingredients')}}</p>
-                                    @enderror
-                                    <textarea name="ingredients" placeholder="Ingrédients de la recette">{{old('ingredients')}}</textarea>
+                                    <textarea name="content"
+                                              placeholder="Description de la recette">{{old('content')}}</textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -42,7 +38,7 @@
                                     <input type="file" name="media">
                                 </div>
                             </div>
-                            <button type="submit" class="button">Créer</button>
+                            <button type="submit" class="button">Ajouter les ingrédients</button>
                         </form>
                     </div>
                 </div>

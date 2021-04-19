@@ -1,7 +1,16 @@
 <?php
 
+use App\Http\Controllers\CaptchaServiceController;
+use App\Http\Controllers\GestionRoleController;
+use App\Http\Controllers\IngredientController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RecipesController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,18 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth'])->name('dashboard');
-
-
-
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\RecipesController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CommentController;
-
-
 Route::get('/', function(){
     return view('index', [
         'auth_user' => Auth::user()
@@ -35,32 +32,20 @@ Route::get('/home/recipes',[HomeController::class, 'index'] );
 Route::get('/recipes',[RecipesController::class, 'index'] );
 Route::get('/recipe/{id}',[RecipesController::class, 'show']);
 
+Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact/create', [ContactController::class, 'store']);
 
 Route::resources([
     '/admin/recipe' => RecipesController::class,
 ]);
 
-
-
-// Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-// Route::get('/', 'HomeController@index');
-Route::get('/dashboard',[HomeController::class, 'index'] );
-// Route::get('/recettes', [RecipesController::class, 'index']);
-// Route::get('/recette/{url}',[RecipesController::class, 'show']);
-
-Route::resources([
-    '/admin/recipe' => RecipesController::class,
-]);
-
-Route::get('/contact', [ContactController::class, 'index']);
-// Route::post('/contact/create', [ContactController::class, 'store']);
-
+Route::get('/manage/users',[GestionRoleController::class, 'index'] );
+Route::get('/manage/search/users',[GestionRoleController::class, 'search'])->name('gestionSearch');
+Route::put('/manage/update/{id}',[GestionRoleController::class, 'update'])->name('gestionUpdate');
 
 Route::post('/comment/create', [CommentController::class, 'store']);
 Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
 
-
-
+Route::put('/ingredient/update/{id}', [IngredientController::class, 'update'])->name('ingredientUpdate');
 
 require __DIR__.'/auth.php';

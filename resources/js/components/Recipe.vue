@@ -1,19 +1,33 @@
 <template>
     <div v-if="this.recipe.author" class="container">
-        <h3>{{recipe.title}}</h3>
-        <p>Auteur : {{recipe.author.name}}</p>
-        <p>Ingrédients : {{recipe.ingredients}}</p>
-        <p>Content : {{recipe.content}}</p>
+        <div class="row">
+            <div class="col-7">
+                <h3>{{recipe.title}}</h3>
+                <p>Auteur : {{recipe.author.name}}</p>
+                <p>Content : {{recipe.content}}</p>
+            </div>
+            <div v-if="Object.keys(ingredients).length > 0" class="col-5">
+                <h4>Ingredients</h4>
+                <ul class="list-group mx-0">
+                    <li class="list-group-item" v-for="ingredient in ingredients">
+                        <div class="row">
+                            <p class="col-8">{{ingredient.name}}</p>
+                            <p class="col-4">{{ingredient.quantity}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
         <div v-if="this.recipe.media">
             <img :src="`/images/${this.recipe.media}`">
         </div>
 
-        <div v-if="this.authUser">
+        <div v-if="authUser.id == recipe.author_id || authUser.role == 'admin'">
             <button v-on:click="deleteRecipe" class="button">Supprimer</button>
-            <button v-on:click="editRecipe" class="button">                    
-                <router-link :to="`/admin/recipe/${recipe.id}/edit`">Modifier</router-link>
-            </button>
+            <router-link :to="`/admin/recipe/${recipe.id}/edit`"><button v-on:click="editRecipe" class="button">                    
+                Modifier
+            </button></router-link>
         </div>
 
         <div>
@@ -27,7 +41,7 @@
                 <div v-for="comment in comments" :key="comment.id">
                     <h5>{{comment.author}} <small>({{comment.date}})</small></h5>
                     <p>{{comment.content}}</p>
-                    <button v-if="authUser" v-on:click="deleteComment(comment.id)" class="btn btn-danger">Supprimer</button>
+                    <button v-if="authUser.id == comment.author_id || authUser.role == 'admin'" v-on:click="deleteComment(comment.id)" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>
         </div>
@@ -42,6 +56,7 @@
             return{
                 recipe:{},
                 comments:{},
+                ingredients:{},
                 message:null,
                 authUser: window.authUser
             }
@@ -58,6 +73,7 @@
                     .then(response => {
                         this.recipe = response.data.recipe;
                         this.comments = response.data.comments;
+                        this.ingredients = response.data.ingredients;
                     })
                     .catch(error => console.log(error));
             },
@@ -70,7 +86,7 @@
 
             deleteRecipe:function(){
                 axios.delete('/admin/recipe/' + this.$route.params.id)
-                .then(response => this.router.push('/recipes'))
+                .then(response => this.$router.push('/recipes'))
                 .catch(error => console.log(error));
 
             },
