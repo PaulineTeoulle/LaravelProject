@@ -22,14 +22,6 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth'])->name('dashboard');
-
-/*Route::middleware('admin')->group(function () {
-    Route::get('/contact', [ContactController::class, 'index']);
-});*/
-
 Route::get('/', function(){
     return view('index', [
         'auth_user' => Auth::user()
@@ -48,13 +40,14 @@ Route::resources([
 
 Route::get('/manage/users',[GestionRoleController::class, 'index'] );
 Route::get('/manage/search/users',[GestionRoleController::class, 'search'])->name('gestionSearch');
+Route::put('/manage/update/{id}',[GestionRoleController::class, 'update'])->name('gestionUpdate');
 
 
 
 
-Route::get('/dashboard',[HomeController::class, 'index'] );
+// Route::get('/dashboard',[HomeController::class, 'index'] );
 
-Route::get('/contact', [ContactController::class, 'index']);
+// Route::get('/contact', [ContactController::class, 'index']);
 
 Route::post('/comment/create', [CommentController::class, 'store']);
 Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
@@ -63,9 +56,9 @@ Route::post('/comment/delete/{id}', [CommentController::class, 'destroy']);
 
 
 
-Route::get('/gestion', [GestionRoleController::class, 'index'])->name('gestion');
-Route::get('/gestion/search', [GestionRoleController::class, 'search'])->name('gestionSearch');
-Route::post('/gestion/update/{id}', [GestionRoleController::class, 'update'])->name('gestionUpdate');
+// Route::get('/gestion', [GestionRoleController::class, 'index'])->name('gestion');
+// Route::get('/gestion/search', [GestionRoleController::class, 'search'])->name('gestionSearch');
+// Route::post('/gestion/update/{id}', [GestionRoleController::class, 'update'])->name('gestionUpdate');
 
 Route::get('/ingredient',[IngredientController::class, 'index'])->name('ingredient');
 Route::post('/ingredient/create',[IngredientController::class, 'store'])->name('ingredientCreate');

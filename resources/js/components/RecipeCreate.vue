@@ -56,14 +56,14 @@
                 let formData = new FormData();
                 formData.append("title", this.recipe.title);
                 formData.append("content", this.recipe.content);
-                formData.append("ingredients", this.ingredients);
+                formData.append("ingredients", JSON.stringify(this.ingredients));
                 // evite la string "null"
                 if(this.recipe.media){
                     formData.append("media", this.recipe.media);
                 }
                 axios.post('/admin/recipe', formData)
-                    // .then(this.$router.push('/'))
-                    .then(response => console.log(response.data))
+                    .then(this.$router.push('/'))
+                    // .then(response => console.log(response.data))
                     .catch(error => console.log(error));
             },
 

@@ -39,10 +39,10 @@ class RecipesController extends Controller
     public function show($id) {
         $recipe = Recipe::where('id',$id)->first();
         $comments = Comment::all()->where('recipe_id',$id);
-        // $ingredients = Ingredient::where('recipe_id',$id)->get();
+        $ingredients = Ingredient::where('recipe_id',$id)->get();
         $author = User::where('id', $recipe->author_id)->first();
         $recipe->author = $author;
-        $response = ["recipe" => $recipe, "comments" => $comments]; //"ingredients" => $ingredients];
+        $response = ["recipe" => $recipe, "comments" => $comments, "ingredients" => $ingredients];
         return response()->json($response);
     }
 
@@ -89,10 +89,9 @@ class RecipesController extends Controller
         // $recipe->ingredients = request('ingredients'); 
         $recipe->media = $filename;
         $recipe->save();
-        // redirect()->route('/ingredients/create', [
-        //     'recipe_id' => 'test',
-        //     'ingredients' => request('ingredients'),
-        // ]);
+        // return \App::call('App\Http\Controllers\IngredientController@store');    
+        return app('App\Http\Controllers\IngredientController')->store($recipe->id ,request('ingredients'));
+
     }
 
     /**

@@ -23,11 +23,10 @@ class GestionRoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $role = $request->params["role"];
         $user = User::find($id);
-        $user->update($request->all());
-
-        return redirect()->route('gestion')
-            ->with('success', 'Modification enregistrée.');
+        $user->role = $role;
+        $user->save();
     }
 
     public function search(Request $request)

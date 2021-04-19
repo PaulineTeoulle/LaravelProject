@@ -21,27 +21,16 @@ class IngredientController extends Controller
        ));
     }
 
-
-    public function store()
+    public function store($recipe_id, $ingredients)
     {
-        return 'test';
-        $ingredient = new Ingredient();
-        $ingredient->name = request('name');
-        $ingredient->quantity = request('quantity');
-        $ingredient->recipe_id = request('recipe_id');
-        $ingredient->save();
-
-        $recipe = Recipe::where('id',$ingredient->recipe_id)->get()->first();
-
-        $ingredients = Ingredient::where('recipe_id',request('recipe_id'))->get();
-
-        return view('recipes/ajout_ingredient',array(
-            'ingredients' => $ingredients,
-            'ingredient' => $ingredient,
-            'recipe' =>$recipe,
-        ));
-
-
+        $ingredients = json_decode($ingredients);
+        foreach($ingredients as $value){
+            $ingredient = new Ingredient();
+            $ingredient->name = $value->name;
+            $ingredient->quantity = $value->quantity;
+            $ingredient->recipe_id = $recipe_id;
+            $ingredient->save();
+        }
     }
 
 
