@@ -11,35 +11,26 @@ use Illuminate\Support\Facades\DB;
 
 class IngredientController extends Controller
 {
-    public function index()
-    {
-        $ingredients = Ingredient::all();
-        return view('ingredient', array(
-            'ingredients' => $ingredients,
-        ));
-    }
-
-
     public function store()
     {
+        //Récupération des données et association au modèle, sauvegarde des données
         $ingredient = new Ingredient();
         $ingredient->name = request('name');
         $ingredient->quantity = request('quantity');
         $ingredient->recipe_id = request('recipe_id');
         $ingredient->save();
 
+        //Récupération des données nécessaire à l'affichage
         $recipe = Recipe::where('id', $ingredient->recipe_id)->get()->first();
-
         $ingredients = Ingredient::where('recipe_id', request('recipe_id'))->get();
 
+        //Passage des données à la view
         return view('recipes/ajout_ingredient', array(
             'ingredients' => $ingredients,
             'ingredient' => $ingredient,
             'recipe' => $recipe,
         ));
-
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -49,10 +40,11 @@ class IngredientController extends Controller
      */
     public function edit($id)
     {
-
+        //Recherche des ingredients via l'id de recette
         $ingredients = Ingredient::where('recipe_id', $id)->get();
 
-        return view('recipes/edit_ingredient', array( //Pass the recipe to the view
+        //Passage des données à la view
+        return view('recipes/edit_ingredient', array(
             'ingredients' => $ingredients,
             'recipe_id' => $id
         ));
@@ -68,17 +60,17 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //Recherche de l'ingrédient via l'id, sauvegarde des modifications
         $ingredient = Ingredient::where('id', $id)->get()->first();
-
         $input = $request->all();
         $ingredient->fill($input)->save();
 
+        //Récupération des données nécessaire à l'affichage
         $recipe = Recipe::where('id', $ingredient->recipe_id)->first();
         $ingredients = Ingredient::where('recipe_id', $ingredient->recipe_id)->get();
-
         $comments = Comment::all()->where('recipe_id', $ingredient->recipe_id);
 
+        //Passage des données à la view
         return view('recipes/single', array(
             'recipe' => $recipe,
             'comments' => $comments,
@@ -91,6 +83,7 @@ class IngredientController extends Controller
     {
         $search = $request->input('search');
 
+        //Récupération des données via la requête de recherche
         $results = DB::table('recipes')
             ->join('ingredient', function ($join) {
                 $join->on('recipes.id', '=', 'ingredient.recipe_id');
@@ -98,6 +91,7 @@ class IngredientController extends Controller
             })->where('ingredient.name', 'LIKE', "%{$search}%")
             ->get();
 
+        //Passage des données à la view
         return view('recettes', array(
             'recipes' => $results,
         ));

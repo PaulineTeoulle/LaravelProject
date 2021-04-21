@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 use Laravel\Socialite\Facades\Socialite;
 
-// <-- ne pas oublier
 
 class SocialiteController extends Controller
 {
@@ -16,14 +14,16 @@ class SocialiteController extends Controller
 
     public function loginRegister()
     {
+        //Retourne la view pour se login
         return view('socialite/loginRegister');
     }
 
     public function redirect(Request $request)
     {
-
+        //Recupération du provider
         $provider = $request->provider;
 
+        //Redirection vers le bon provider (google ou github)
         if (in_array($provider, $this->providers)) {
             return Socialite::driver($provider)->redirect();
         }
@@ -32,13 +32,12 @@ class SocialiteController extends Controller
 
     public function callback(Request $request)
     {
-
+        //Recupération du provider
         $provider = $request->provider;
 
+        //Récupération des données selon le provider
         if (in_array($provider, $this->providers)) {
-
             $data = Socialite::driver($provider)->user();
-
             $email = $data->getEmail();
             if ($data->getName() !== null) {
                 $name = $data->getName();
@@ -46,22 +45,21 @@ class SocialiteController extends Controller
                 $name = $data->getNickname();
             $user = User::where("email", $email)->first();
 
+            //Sauvegarde des données ou création de l'utilisateur.
             if (isset($user)) {
                 $user->save();
             } else {
                 $user = User::create([
                     'name' => $name,
                     'email' => $email,
-                    'password' => bcrypt("c5d6s84fz6D5") // On attribue un mot de passe
+                    'password' => bcrypt("c5d6s84fz6D5")
                 ]);
             }
-
-
+            //Connexion via les données enregistrées avant
             auth()->login($user);
-
+            //Redirection si connexion réussie
             if (auth()->check()) return redirect(route('home'));
         }
-        abort(404);
     }
 }
 

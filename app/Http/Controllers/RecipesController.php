@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Ingredient;
-use App\Models\LiaisonRecipeIngredient;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use function PHPUnit\Framework\isEmpty;
 
 class RecipesController extends Controller
 {
@@ -21,8 +18,10 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::all(); //get all recipes
+        //Récupération de toutes les recettes
+        $recipes = Recipe::all();
 
+        //Passage des données à la view
         return view('recettes', array(
             'recipes' => $recipes,
         ));
@@ -36,10 +35,12 @@ class RecipesController extends Controller
      */
     public function show($id)
     {
+        //Récupération des données nécessaire à l'affichage
         $recipe = Recipe::where('id', $id)->first();
-
         $ingredients = Ingredient::where('recipe_id', $id)->get();
         $comments = Comment::all()->where('recipe_id', $id);
+
+        //Passage des données à la view
         return view('recipes/single', array(
             'recipe' => $recipe,
             'comments' => $comments,
@@ -54,7 +55,7 @@ class RecipesController extends Controller
      */
     public function create()
     {
-
+        //Retourne la bonne view
         return view('recipes/create');
     }
 
@@ -66,32 +67,34 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-
+        //Récupération des données nécessaire aux images
         $urlString = $_SERVER['DOCUMENT_ROOT'];
         $info = pathinfo($urlString);
         $target_dir = $info['dirname'] . '\public\images\\';
-
         $file = request('media');
         if ($file != null)
             $filename = $file->getClientOriginalName();
         else
             $filename = null;
-
         $target_file = $target_dir . $filename;
         move_uploaded_file($file, $target_file);
 
+        //Récupération des données et association au modèle, sauvegarde des données
         $recipe = new Recipe();
         $recipe->author_id = Auth::id();
         $recipe->title = request('title');
         $recipe->content = request('content');
         $recipe->url = 'url static'; //STATIQUE
         $recipe->status = 'status static'; //STATIQUE
-        $recipe->media = $filename; //STATIQUE
+        $recipe->media = $filename;
         $recipe->save();
 
+        //Récupération des données nécessaire à l'affichage
         $recipe = Recipe::where('id', $recipe->id)->get()->first();
         $ingredients = null;
-        return view('recipes/ajout_ingredient', array( //Pass the recipe to the view
+
+        //Passage des données à la view
+        return view('recipes/ajout_ingredient', array(
             'recipe' => $recipe,
             'ingredients' => $ingredients
         ));
@@ -105,9 +108,11 @@ class RecipesController extends Controller
      */
     public function edit($id)
     {
-        $recipe = Recipe::where('id', $id)->first(); //get first recipe with recipe_nam == $recipe_name
+        //Recherche de la bonne recette via l'id
+        $recipe = Recipe::where('id', $id)->first();
 
-        return view('recipes/edit', array( //Pass the recipe to the view
+        //Passage des données à la view
+        return view('recipes/edit', array(
             'recipe' => $recipe
         ));
     }
@@ -121,11 +126,16 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Recherche de la bonne recette via l'id, sauvegarde des modifications
         $recipe = Recipe::findOrFail($id);
         $input = $request->all();
         $recipe->fill($input)->save();
+
+        //Récupération des données nécessaire à l'affichage
         $ingredients = Ingredient::where('recipe_id', $id)->get();
         $comments = Comment::all()->where('recipe_id', $id);
+
+        //Passage des données à la view
         return view('recipes/single', array(
             'recipe' => $recipe,
             'comments' => $comments,
@@ -141,20 +151,22 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
+        //Recherche des ingrédients associé à la recette
         $ingredients = Ingredient::where('recipe_id', $id)->get()->all();
-
+        //Suppression de tous les ingrédients avant suppression de la recette
         if ($ingredients != null) {
             foreach ($ingredients as $ingredient) {
                 $ingredient->delete();
             }
         }
-        $recipe = Recipe::where('id', $id)->first()->delete();
+        Recipe::where('id', $id)->first()->delete();
+
+        //Récupération des données nécessaire à l'affichage
         $recipes = Recipe::all();
+
+        //Passage des données à la view
         return view('recettes', array(
             'recipes' => $recipes,
         ));
-
-
     }
-
 }

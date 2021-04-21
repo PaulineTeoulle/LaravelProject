@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,11 +14,13 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    public function isAdmin() {
+    public function isAdmin()
+    {
         return $this->role === 'admin';
     }
 
-    public function isUser() {
+    public function isUser()
+    {
         return $this->role === 'user';
     }
 
@@ -60,7 +61,7 @@ class User extends Authenticatable
      */
     public function recipes()
     {
-        return $this->hasMany(Recipe::class,'author_id');
+        return $this->hasMany(Recipe::class, 'author_id');
     }
 }
 
