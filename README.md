@@ -7,9 +7,18 @@ Corentin ROY et Pauline TEOULLE
 Nous avons découpé le projet en deux branches différentes : la branche `main` qui est le projet laravel basique et la branche `vue` qui utilise VueJS pour l'affichage.
 La différence est donc l'affichage et l'absence de Socialite dans la branche `vue`.
 
+
+## Sommaire
+
+ - [Guide d'installation pour la branche `main`](#main)
+ - [Guide d'installation pour la branche `vue`](#vue)
+ - [Les fonctionnalités réalisées](#fonctionnalite)
+
 ------
 
-## Guide d'installation pour la branche `main`
+## Guide d'installation pour la branche `main` <a name="main"></a>
+
+Source: https://prograide.com/pregunta/5868/-comment-creer-un-lien-vers-une-ancre-nommee-dans-multimarkdown--
 
 ### Cloner le repository
 `git clone https://github.com/PaulineTeoulle/LaravelProject.git`
@@ -53,7 +62,7 @@ Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem"
 ### Lancer le serveur
 `php artisan serve` 
 
-## Guide d'installation pour la branche `vue`
+## Guide d'installation pour la branche `vue` <a name="vue"></a>
 
 ### Cloner le repository à partir de la branche
 `git clone -b vue https://github.com/PaulineTeoulle/LaravelProject.git`
@@ -105,7 +114,7 @@ Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem"
 
 ------
 
-## Les fonctionnalités réalisées
+## Les fonctionnalités réalisées <a name="fonctionnalité"></a>
 
 ### Le TP2 complet -> Branche `main` et `vue`
 - Création des routes, contrôleurs, modèles et vues. 
