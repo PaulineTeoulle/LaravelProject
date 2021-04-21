@@ -40,21 +40,22 @@ class SocialiteController extends Controller
             $data = Socialite::driver($provider)->user();
 
             $email = $data->getEmail();
-            $name = $data->getName();
-            $nickname = $data->getNickname();
+            if ($data->getName() !== null) {
+                $name = $data->getName();
+            } else if ($data->getNickname() != null)
+                $name = $data->getNickname();
             $user = User::where("email", $email)->first();
 
             if (isset($user)) {
-                if ($name != null) $user->name = $name;
-                else $user->name = $nickname;
                 $user->save();
             } else {
                 $user = User::create([
-                    'name' => $user->name,
+                    'name' => $name,
                     'email' => $email,
                     'password' => bcrypt("c5d6s84fz6D5") // On attribue un mot de passe
                 ]);
             }
+
 
             auth()->login($user);
 
@@ -62,5 +63,5 @@ class SocialiteController extends Controller
         }
         abort(404);
     }
-
 }
+

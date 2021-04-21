@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ingredient;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,6 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller{
     public function index()
     {
-        $comments = Comment::all();
-        return view('recipes/single', array(
-            'comments' => $comments,
-        ));
     }
 
     public function store(Request $request)
@@ -28,10 +25,12 @@ class CommentController extends Controller{
 
         $recipe = Recipe::where('id',$comment->recipe_id)->first();
         $comments = Comment::all()->where('recipe_id',$comment->recipe_id);
-
-        return view('/recipes/single',  array(
+        $ingredients = Ingredient::where('recipe_id',$comment->recipe_id)->get();
+        //$comments = Comment::all()->where('recipe_id',$id);
+        return view('recipes/single', array(
             'recipe' => $recipe,
             'comments' =>$comments,
+            'ingredients' =>$ingredients
         ));
     }
 
@@ -46,14 +45,13 @@ class CommentController extends Controller{
 
         $recipe = Recipe::where('id',$comment->recipe_id)->first();
         $comments = Comment::all()->where('recipe_id',$comment->recipe_id);
-
+        $ingredients = Ingredient::where('recipe_id',$id)->get();
 
         return view('/recipes/single',  array(
             'recipe' => $recipe,
             'comments' =>$comments,
+            'ingredients' =>$ingredients
         ));
     }
-
-
 
 }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isEmpty;
 
 class RecipesController extends Controller
 {
@@ -22,7 +23,7 @@ class RecipesController extends Controller
     {
         $recipes = Recipe::all(); //get all recipes
 
-        return view('recettes',array(
+        return view('recettes', array(
             'recipes' => $recipes,
         ));
     }
@@ -30,19 +31,20 @@ class RecipesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
-    public function show($id) {
-        $recipe = Recipe::where('id',$id)->first();
+    public function show($id)
+    {
+        $recipe = Recipe::where('id', $id)->first();
 
-        $ingredients = Ingredient::where('recipe_id',$id)->get();
-        $comments = Comment::all()->where('recipe_id',$id);
-         return view('recipes/single', array(
-                'recipe' => $recipe,
-                'comments' =>$comments,
-             'ingredients' =>$ingredients
-         ));
+        $ingredients = Ingredient::where('recipe_id', $id)->get();
+        $comments = Comment::all()->where('recipe_id', $id);
+        return view('recipes/single', array(
+            'recipe' => $recipe,
+            'comments' => $comments,
+            'ingredients' => $ingredients
+        ));
     }
 
     /**
@@ -59,20 +61,18 @@ class RecipesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //Gestion des images
-        //TODO : verif si image existe deja => changer nom
 
         $urlString = $_SERVER['DOCUMENT_ROOT'];
         $info = pathinfo($urlString);
         $target_dir = $info['dirname'] . '\public\images\\';
 
         $file = request('media');
-        if($file!=null)
+        if ($file != null)
             $filename = $file->getClientOriginalName();
         else
             $filename = null;
@@ -93,19 +93,19 @@ class RecipesController extends Controller
         $ingredients = null;
         return view('recipes/ajout_ingredient', array( //Pass the recipe to the view
             'recipe' => $recipe,
-            'ingredients'=> $ingredients
+            'ingredients' => $ingredients
         ));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function edit($id)
     {
-        $recipe = Recipe::where('id',$id)->first(); //get first recipe with recipe_nam == $recipe_name
+        $recipe = Recipe::where('id', $id)->first(); //get first recipe with recipe_nam == $recipe_name
 
         return view('recipes/edit', array( //Pass the recipe to the view
             'recipe' => $recipe
@@ -115,8 +115,8 @@ class RecipesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function update(Request $request, $id)
@@ -124,26 +124,39 @@ class RecipesController extends Controller
         $recipe = Recipe::findOrFail($id);
         $input = $request->all();
         $recipe->fill($input)->save();
-
-
+        $ingredients = Ingredient::where('recipe_id', $id)->get();
+        $comments = Comment::all()->where('recipe_id', $id);
         return view('recipes/single', array(
-            'recipe' => $recipe
+            'recipe' => $recipe,
+            'comments' => $comments,
+            'ingredients' => $ingredients
         ));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function destroy($id)
     {
-        Recipe::findOrFail($id)->delete();
+
+
+        $ingredients = Ingredient::where('recipe_id', $id)->get()->all();
+
+        if ($ingredients != null) {
+            foreach ($ingredients as $ingredient) {
+                $ingredient->delete();
+            }
+        }
+        $recipe = Recipe::where('id', $id)->first()->delete();
         $recipes = Recipe::all();
-        return view('recettes',array(
+        return view('recettes', array(
             'recipes' => $recipes,
         ));
+
+
     }
 
 }

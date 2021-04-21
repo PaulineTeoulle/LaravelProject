@@ -40,7 +40,6 @@ class IngredientController extends Controller
             'recipe' =>$recipe,
         ));
 
-
     }
 
 
@@ -55,9 +54,6 @@ class IngredientController extends Controller
 
         $ingredients = Ingredient::where('recipe_id',$id)->get();
 
-        $recipe = Recipe::findOrFail($id);
-
-
         return view('recipes/edit_ingredient', array( //Pass the recipe to the view
             'ingredients' => $ingredients,
             'recipe_id' => $id
@@ -70,7 +66,7 @@ class IngredientController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
