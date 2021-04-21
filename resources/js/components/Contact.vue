@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h3 class="my-4">Contact</h3>
-        <div v-if="authUser.role == 'admin'">
+        <div>
             <h5>contact enregistrés</h5>
             <ul class="d-flex justify-content-start flex-wrap mx-0">
                 <li class="p-2" style="list-style-type: none" v-for="contact in contacts" :key="contact.id">
@@ -47,7 +47,6 @@
                     email: null,
                     message: null,
                 },
-                authUser: window.authUser
             }
         },
 
