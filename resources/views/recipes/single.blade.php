@@ -12,7 +12,7 @@
             <div class="medium-6 large-5 cell large-offset-1">
                 <h3>{{$recipe->title}}</h3>
                 Auteur : {{$recipe->author->name}}<br><br>
-                Content : {{$recipe->content}}<br><br>
+                Contenu : {{$recipe->content}}<br><br>
 
                 @if(Auth::user() && Auth::user()->id == $recipe->author->id)
                     <form method="GET" action="/admin/recette/{{$recipe->id}}/edit">

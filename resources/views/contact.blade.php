@@ -11,7 +11,8 @@
                         <div class="callout">
                             @foreach ($contacts as $contact)
                                 <ul class="menu simple">
-                                    <li><b>Nom :</b> {{$contact->name}} <b> Mail : </b>{{ $contact->email }} <br></li>
+                                    <li><b>Nom :</b> {{$contact->name}} <b> Mail : </b>{{ $contact->email }}<b> Message : </b>{{ $contact->message }} <br>
+                                    </li>
                                 </ul>
                             @endforeach
                         </div>

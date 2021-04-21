@@ -9,20 +9,19 @@
         </div>
     @endif
 
-
     <div>
         <div class="mx-auto pull-right">
             <div class="">
                 <form action="/gestion/search" method="GET">
                     <div class="input-group">
-                        <input type="text" name="search" required/>
-                        <button type="submit" class="button">Chercher</button>
+                        <input type="text" name="search" required placeholder="Rechercher par nom"/>
+                        <button type="submit" class="button" >Chercher</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <div>
         @foreach ( $users as $user )
             {{$user->name}}
@@ -30,7 +29,6 @@
                 <form method="POST" action="/gestion/update/{{$user->id}}">
                     @csrf
                     <select name="role">
-
                         <option value={{$user->role}}>--</option>
                         <option value="admin" name="admin">
                             Admin
