@@ -7,24 +7,26 @@ Corentin ROY et Pauline TEOULLE
 Nous avons découpé le projet en deux branches différentes : la branche `main` qui est le projet laravel basique et la branche `vue` qui utilise Vue.js pour l'affichage.
 La différence est donc l'affichage. A savoir que Socialite (voir plus bas) n'a pas été implémenté dans la branche `vue`. 
 
+------
+
 ## Guide d'installation pour la branche `main`
 
 ### Cloner le repository
 `git clone https://github.com/PaulineTeoulle/LaravelProject.git`
 
-### Accédez au répertoire du projet
+### Accéder au répertoire du projet
 `cd LaravelProject`
 
 ### Installer les dépendances de l'application web à partir de composer 
 `composer install`
 
-### Créez une copie de votre fichier .env
+### Créer une copie de votre fichier .env
 `cp .env.example .env`
 
-### Générez votre clé d’encryption
+### Générer votre clé d’encryption
 `php artisan key:generate` 
 
-### Configurez votre fichier .env pour permettre une connexion à la base de donnée.
+### Configurer votre fichier .env pour permettre une connexion à la base de donnée.
 
 Dans le fichier .env, remplissez les options 
 - DB_HOST, 
@@ -32,9 +34,11 @@ Dans le fichier .env, remplissez les options
 - DB_DATABASE, 
 - DB_USERNAME 
 - DB_PASSWORD 
-pour qu'elles correspondent aux informations d'identification de la base de données que vous venez de créer. 
 
-Dans le fichier .env, ajoutez les lignes suivantes à la fin pour pouvoir tester Socialite.
+Attention : vous devez changer  `DB_CONNECTION=mysql` en  `DB_CONNECTION=sqlite`.
+Vous avez également une base de données implémentée directement dans le projet (pour tester les rôles notemment) donc n'oubliez pas de mettre le chemin vers cette base dans l'option DB_DATABASE. Cela devrait ressembler à ça `LaravelProject\database\database.db`à la fin.
+
+Toujours dans le fichier .env, ajoutez les lignes suivantes à la fin pour pouvoir tester la fonctionnalité Socialite (clefs d'API).
 - GOOGLE_CLIENT_ID=799144116734-l4rvjusohorct50i1pjchhtt1q3lhjna.apps.googleusercontent.com
 - GOOGLE_CLIENT_SECRET=OpQALXDQ0ovhk_vfvVhZW6lE
 - GOOGLE_CLIENT_CALLBACK=http://127.0.0.1:8000/callback/google
@@ -42,13 +46,19 @@ Dans le fichier .env, ajoutez les lignes suivantes à la fin pour pouvoir tester
 - GITHUB_CLIENT_SECRET=f54d6dc5d804367b362a4295e91728c384401d51
 - GITHUB_CLIENT_CALLBACK=http://127.0.0.1:8000/callback/github
 
-### Lancez le serveur
+Attention : pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem" en cliquant sur le lien suivant [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html). Vous devez ensuite vérifier que dans votre fichier php.ini, la variable curl.cainfo aient un chemin absolu vers le fichier cacert.pem que vous venez de télécharger. Cela devrait ressembler à ça :`curl.cainfo = C:\wamp64\cacert.pem`.
+
+### Lancer le serveur
 `php artisan serve` 
+
+------
 
 ## Guide d'installation pour la branche `vue`
 
 
-## Les fonctionnalités
+------
+
+## Les fonctionnalités réalisées
 
 ### Le TP2 complet
 - Création des routes, contrôleurs, modèles et vues. 
