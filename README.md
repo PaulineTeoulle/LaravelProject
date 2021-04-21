@@ -46,15 +46,12 @@ Toujours dans le fichier .env, ajoutez les lignes suivantes à la fin pour pouvo
 - GITHUB_CLIENT_SECRET=f54d6dc5d804367b362a4295e91728c384401d51
 - GITHUB_CLIENT_CALLBACK=http://127.0.0.1:8000/callback/github
 
-Attention : pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem" en cliquant sur le lien suivant [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html). Vous devez ensuite vérifier que dans votre fichier php.ini, la variable curl.cainfo aient un chemin absolu vers le fichier cacert.pem que vous venez de télécharger. Cela devrait ressembler à ça :`curl.cainfo = C:\wamp64\cacert.pem`.
+Attention : pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem" en cliquant sur le lien suivant [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html). Vous devez ensuite vérifier que dans votre fichier php.ini, la variable curl.cainfo ait un chemin absolu vers le fichier cacert.pem que vous venez de télécharger. Cela devrait ressembler à ça :`curl.cainfo = C:\wamp64\cacert.pem`.
 
 ### Lancer le serveur
 `php artisan serve` 
 
-------
-
 ## Guide d'installation pour la branche `vue`
-
 
 ------
 
