@@ -114,7 +114,7 @@ Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem"
 
 ------
 
-## Les fonctionnalités réalisées <a name="fonctionnalité"></a>
+## Les fonctionnalités réalisées <a name="fonctionnalite"></a>
 
 ### Le TP2 complet -> Branche `main` et `vue`
 - Création des routes, contrôleurs, modèles et vues. 
