@@ -17,6 +17,11 @@
                     <textarea name="content">{{$recipe->content}}</textarea>
                 </div>
             </div>
+            <div class="row">
+                <div class="medium-6 columns">
+                    <input type="hidden" name="media" value="{{$recipe->media}}">
+                </div>
+            </div>
             <button type="submit" class="button">Editer</button>
         </form>
     </div>

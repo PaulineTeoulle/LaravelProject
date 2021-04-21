@@ -141,8 +141,6 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-
-
         $ingredients = Ingredient::where('recipe_id', $id)->get()->all();
 
         if ($ingredients != null) {
