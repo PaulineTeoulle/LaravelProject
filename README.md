@@ -70,7 +70,7 @@ Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem"
 ### Créer une copie du fichier .env
 `cp .env.example .env`
 
-### Générer votre clé d’encryption
+### Générer la clé d’encryption
 `php artisan key:generate` 
 
 ### Configurer du fichier .env 
