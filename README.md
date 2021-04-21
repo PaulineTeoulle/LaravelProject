@@ -4,8 +4,8 @@ Corentin ROY et Pauline TEOULLE
 
 ## Avant propos
 
-Nous avons découpé le projet en deux branches différentes : la branche `main` qui est le projet laravel basique et la branche `vue` qui utilise Vue.js pour l'affichage.
-La différence est donc l'affichage. A savoir que Socialite (voir plus bas) n'a pas été implémenté dans la branche `vue`. 
+Nous avons découpé le projet en deux branches différentes : la branche `main` qui est le projet laravel basique et la branche `vue` qui utilise VueJS pour l'affichage.
+La différence est donc l'affichage et l'absence de Socialite dans la branche `vue`.
 
 ------
 
@@ -17,16 +17,16 @@ La différence est donc l'affichage. A savoir que Socialite (voir plus bas) n'a 
 ### Accéder au répertoire du projet
 `cd LaravelProject`
 
-### Installer les dépendances de l'application web à partir de composer 
+### Installer les dépendances de l'application
 `composer install`
 
-### Créer une copie de votre fichier .env
+### Créer une copie du fichier .env
 `cp .env.example .env`
 
-### Générer votre clé d’encryption
+### Générer une clé d’encryption
 `php artisan key:generate` 
 
-### Configurer votre fichier .env pour permettre une connexion à la base de donnée.
+### Configurer le fichier .env
 
 Dans le fichier .env, remplissez les options 
 - DB_HOST
@@ -47,7 +47,7 @@ Toujours dans le fichier .env, ajoutez les lignes suivantes à la fin pour pouvo
 - GITHUB_CLIENT_CALLBACK=http://127.0.0.1:8000/callback/github
 
 
-### Modification du php.ini pour utiliser Socialite.
+### Modification du php.ini pour utiliser Socialite
 Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem" en cliquant sur le lien suivant [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html). Vous devez ensuite vérifier que dans votre fichier php.ini, la variable curl.cainfo ait un chemin absolu vers le fichier cacert.pem que vous venez de télécharger. Cela devrait ressembler à ça :`curl.cainfo = C:\wamp64\cacert.pem`.
 
 ### Lancer le serveur
@@ -61,19 +61,19 @@ Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem"
 ### Accéder au répertoire du projet
 `cd LaravelProject`
 
-### Installer les dépendances de l'application web à partir de composer 
+### Installer les dépendances de l'application 
 `composer install`
 
-### Si besoin, installer les dépendances Vues
+### Si besoin, installer les dépendances VueJS
 `npm install`
 
-### Créer une copie de votre fichier .env
+### Créer une copie du fichier .env
 `cp .env.example .env`
 
 ### Générer votre clé d’encryption
 `php artisan key:generate` 
 
-### Configurer votre fichier .env pour permettre une connexion à la base de donnée.
+### Configurer du fichier .env 
 
 Dans le fichier .env, remplissez les options 
 - DB_HOST, 
@@ -93,7 +93,7 @@ Toujours dans le fichier .env, ajoutez les lignes suivantes à la fin pour pouvo
 - GITHUB_CLIENT_SECRET=f54d6dc5d804367b362a4295e91728c384401d51
 - GITHUB_CLIENT_CALLBACK=http://127.0.0.1:8000/callback/github
 
-### Modification du php.ini pour utiliser Socialite.
+### Modification du php.ini pour utiliser Socialite
 Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem" en cliquant sur le lien suivant [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html). Vous devez ensuite vérifier que dans votre fichier php.ini, la variable curl.cainfo ait un chemin absolu vers le fichier cacert.pem que vous venez de télécharger. Cela devrait ressembler à ça :`curl.cainfo = C:\wamp64\cacert.pem`.
 
 ### Lancer le serveur
@@ -128,7 +128,7 @@ Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem"
 #### CRUD des recettes améliorés (++) -> Branche `vue`
 - CRUD réalisé avec VueJS.
 
-#### Identification / Authentification qui protège l'accès à l’administration (+) -> Branche main et vue
+#### Identification / Authentification qui protège l'accès à l’administration (+) -> Branche `main` et `vue`
 - Système de rôles (admin/user). 
 - Rôle "user" par défault lors de l'inscription.
 - Gestion des rôles par "admin" + barre de recherche par nom.
