@@ -13,7 +13,7 @@ La différence est donc l'affichage. A savoir que Socialite (voir plus bas) n'a 
 `git clone https://github.com/PaulineTeoulle/LaravelProject.git`
 
 ### Accédez au répertoire du projet
-`cd nomduprojet`
+`cd LaravelProject`
 
 ### Installer les dépendances de l'application web à partir de composer 
 `composer install`
