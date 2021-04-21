@@ -99,6 +99,9 @@ Pour utiliser Socialite, il vous faudra télécharger un certificat "cacert.pem"
 ### Lancer le serveur
 `php artisan serve` 
 
+### Avoir les modifications en temps réel
+`npm run watch`
+
 ------
 
 ## Les fonctionnalités réalisées
