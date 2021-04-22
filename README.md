@@ -7,6 +7,18 @@ Corentin ROY et Pauline TEOULLE
 Nous avons découpé le projet en deux branches différentes : la branche `main` qui est le projet laravel basique et la branche `vue` qui utilise VueJS pour l'affichage.
 La différence est donc l'affichage et l'absence de Socialite dans la branche `vue`.
 
+## Login pour s'authentifier 
+# Admin
+Email : admin@admin
+Mdp : 123456789
+
+# User1
+Email : user@user
+Mdp : 123456789
+
+# User2
+Email : user2@user
+Mdp : 123456789
 
 ## Sommaire
 
